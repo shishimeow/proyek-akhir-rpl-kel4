@@ -19,6 +19,9 @@
           </tr>
         </thead>
         <tbody>
+          <form action="/admin/mbkm/create">
+            <button type="submit" class="btn btn-primary" name="action">Tambah Course</button>
+          </form>
             @foreach($lists as $list)
                 <tr>
                     <td>{{ $num++ }}</td>
@@ -32,9 +35,15 @@
                     <td>{{ $list->picture }}</td>
                     <td>{{ $list->slug }}</td>
                     <td>
-                        <button type="submit" class="btn btn-primary m-1">Update</button>
-                        <button type="submit" class="btn btn-primary m-1">Tambah</button>
-                        <button type="submit" class="btn btn-primary m-1">Hapus</button>
+                      <form action="/admin/mbkm/{{ $list->slug }}/edit">
+                        <button type="submit" class="btn btn-primary" name="action" value="edit">Edit</button>
+                      </form>
+
+                      <form action="/admin/mbkm/{{ $list->id }}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
+                      </form>
                     </td>
                 </tr>
             @endforeach

@@ -7,7 +7,6 @@ use App\Models\Faculty;
 use App\Models\ReviewSc;
 use App\Models\User;
 use App\Models\Comment;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -96,8 +95,4 @@ class ScController extends Controller
             'faculties' => Faculty::all(),
         ]);
     }
-
-    // public function checkSlug(Request $request){
-    //     $slug = SlugService::createSlug(SupportCourse::class, 'slug', $request->input('courses_name'));
-    // }
 }

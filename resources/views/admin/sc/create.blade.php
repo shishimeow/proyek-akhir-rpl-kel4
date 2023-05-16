@@ -8,10 +8,13 @@
             <div class="col-12">
                 <label for="courseid" class="form-label">Id Course</label>
                 <input type="text" name="courses_id" class="form-control @error('courses_id') is-invalid @enderror" id="courseid" value="{{ old('courses_id') }}" required>
+                @error('courses_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="col-12">
-                <label for="coursename" class="form-label">Nama Course</label>
-                <input type="text" name="courses_name" class="form-control @error('courses_name') is-invalid @enderror" id="coursename" value="{{ old('courses_name') }}" required>
+                <label for="courses_name" class="form-label">Nama Course</label>
+                <input type="text" name="courses_name" class="form-control @error('courses_name') is-invalid @enderror" id="courses_name" value="{{ old('courses_name') }}" required>
             </div>
             <div class="col-12">
               <label for="faucltyid" class="form-label">Fakultas</label>
@@ -40,7 +43,10 @@
             </div>
             <div class="col-12">
                 <label for="slug" class="form-label">Link Course</label>
-                <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" value="{{ old('slug') }}" required>
+                <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" required>
+                @error('slug')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">Tambah</button>
@@ -49,12 +55,12 @@
     </div>
 
     <script>
-        const title = document.querySelector('#coursename');
+        const title = document.querySelector('#courses_name');
         const slug = document.querySelector('#slug');
 
         title.addEventListener('change', function(){
-            fetch('/admin/sc/createSlug?title=' + coursename.value)
-                .then(responses => response.json())
+            fetch('/admin/sc/checkSlug?title=' + title.value)
+                .then(response => response.json())
                 .then(data => slug.value = data.slug)
         });
     </script>

@@ -30,8 +30,11 @@
 
         @foreach ($support_courses as $support_course)
         <div class="card" style="width: 18rem;">
-            {{-- pakai if else nanti --}}
-            <img src="{{ URL::to('/') }}/img/image1.jpg" class="card-img-top" alt="Tampilan SC">
+            @if($support_course->picture)
+                <img src="{{ asset('storage/'. $support_course->picture) }}" class="img-preview img-fluid">
+            @else
+                <img src="{{ URL::to('/') }}/img/image1.jpg" class="card-img-top" alt="Tampilan SC">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
                 <p class="card-text">Rating: {{ $support_course->reviewscs->avg('rating') }}</p>

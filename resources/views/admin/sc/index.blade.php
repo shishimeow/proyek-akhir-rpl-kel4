@@ -38,7 +38,7 @@
                           @csrf
                           <input type="hidden" name="rev_id" value="{{ $list->id }}">
                           <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
-                      </form>
+                        </form>
                     </td>
                 </tr>
             @endforeach

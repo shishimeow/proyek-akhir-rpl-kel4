@@ -39,7 +39,11 @@
         <p>Rating: {{ $reviews->avg('rating') }}</p>
         <p>Banyak review: {{ $reviews->count() }} review</p>
         @for($i=0; $i<5; $i++)
-            <p>Banyak yang rating {{ $i + 1 }}: {{ $reviews->where('rating', $i + 1)->count() / $reviews->count() * 100}}%</p>
+            @if($reviews->count() == 0)
+                <p>Banyak yang rating {{ $i + 1 }}: {{ $reviews->where('rating', $i + 1)->count() / 1 * 100}}%</p>
+            @else
+                <p>Banyak yang rating {{ $i + 1 }}: {{ $reviews->where('rating', $i + 1)->count() / $reviews->count() * 100}}%</p>
+            @endif
         @endfor
     </div>
     

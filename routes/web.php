@@ -70,7 +70,8 @@ Route::prefix('profile')->middleware(['auth'])->group(function(){
 
 Route::prefix('admin')->middleware(['auth:admin'])->group(function(){
     Route::get('/', [AdminController::class, 'index']);
-    Route::get('/sc/checkSlug', [AdminController::class, 'checkSlug']);
+    Route::get('/sc/checkSlug', [AdminScController::class, 'checkSlug']);
+    Route::put('/sc/{course:slug}', [AdminScController::class, 'update']);
     Route::resource('/sc', AdminScController::class, ['expect' => ['show', 'update']]);
     Route::resource('/mbkm', AdminMbkmController::class);
     Route::resource('/faculty', AdminFacultyController::class);

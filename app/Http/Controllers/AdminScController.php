@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SupportCourse;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use App\Models\Faculty;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,14 +32,14 @@ class AdminScController extends Controller
 
     public function store(Request $request){
         $validate = $request->validate([
-            'courses_id' => 'required|max:10',
+            'courses_id' => 'required|unique:support_courses|max:10',
             'courses_name' => 'required|max:40',
             'course_credits' => 'required|max:10',
             'faculty_id' => 'required',
             'date' => 'required|max:30',
             'desc' => 'required',
             'picture' => 'image|file|max:1024',
-            'slug' => 'required'
+            'slug' => 'required|unique:support_courses'
         ]);
 
         if($request->file('image')){
@@ -68,15 +69,19 @@ class AdminScController extends Controller
             return abort(403);
         }
 
-        $course->update([
-            'courses_name' => $request->input('courses_name'),
-            'courses_id' => $request->input('courses_id'),
-            'faculty_id' => $request->input('faculty_id'),
-            'course_credits' => $request->input('course_credits'),
-            'date' => $request->input('date'),
-            'desc'=> $request->input('desc'),
-            'slug' => $request->input('slug')
-        ]);
+        $rules = [
+            'courses_id' => 'required|max:10|unique:App\Models\SupportCourse,courses_id,'.$course->id,
+            'courses_name' => 'required|max:40',
+            'course_credits' => 'required|max:10',
+            'faculty_id' => 'required',
+            'date' => 'required|max:30',
+            'desc' => 'required',
+            'picture' => 'image|file|max:1024',
+        ];
+
+        if($request->slug != $course->slug){
+            $rules['slug'] = 'required|unique:App\Models\SupportCourse,slug,'.$course->id;
+        };
 
         if($request->file('image')){
             if($request->oldImage){
@@ -86,6 +91,10 @@ class AdminScController extends Controller
                 'picture' => $request->file('image')->store('post-images')
             ]);
         }
+
+        $validatedData = $request->validate($rules);
+
+        SupportCourse::where('id', $course->id)->update($validatedData);
         
         return redirect('/admin/sc');
     }
@@ -98,4 +107,8 @@ class AdminScController extends Controller
         return back();
     }
 
+    public function checkSlug(Request $request){
+        $slug = SlugService::createSlug(SupportCourse::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
+    }
 }
