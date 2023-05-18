@@ -6,8 +6,8 @@
         <form action="/admin/sc" method="POST" class="row justify-content-center g-3" enctype="multipart/form-data">
             @csrf
             <div class="col-12">
-                <label for="courseid" class="form-label">Id Course</label>
-                <input type="text" name="courses_id" class="form-control @error('courses_id') is-invalid @enderror" id="courseid" value="{{ old('courses_id') }}" required>
+                <label for="courses_id" class="form-label">Id Course</label>
+                <input type="text" name="courses_id" class="form-control @error('courses_id') is-invalid @enderror" id="courses_id" value="{{ old('courses_id') }}" required>
                 @error('courses_id')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -55,13 +55,17 @@
     </div>
 
     <script>
-        const title = document.querySelector('#courses_name');
+        const coursesId = document.querySelector('#courses_id');
+        const coursesName = document.querySelector('#courses_name');
+        const title = document.querySelectorAll('#courses_id, #courses_name');
         const slug = document.querySelector('#slug');
 
-        title.addEventListener('change', function(){
-            fetch('/admin/sc/checkSlug?title=' + title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
+        for (let i = 0; i < title.length; i++) {
+            title[i].addEventListener('change', function(){
+                fetch('/admin/sc/checkSlug?title=' + coursesId.value + '-' + coursesName.value)
+                    .then(response => response.json())
+                    .then(data => slug.value = data.slug)
+            });
+        }
     </script>
 @endsection

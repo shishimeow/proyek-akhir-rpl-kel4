@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('positions', 200);
             $table->text('benefit');
             $table->text('requirements');
-            $table->string('picture')->nullable;
+            $table->string('picture')->nullable();
             $table->string('slug')->unique();
         });
     }

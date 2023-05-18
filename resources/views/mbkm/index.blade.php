@@ -31,8 +31,11 @@
 
         @foreach ($mbkms as $mbkm)
         <div class="card" style="width: 18rem;">
-            {{-- pakai if else nanti --}}
+            @if($mbkm->picture)
+            <img src="{{ asset('storage/'. $mbkm->picture) }}" class="img-preview img-fluid">
+            @else
             <img src="{{ URL::to('/') }}/img/image1.jpg" class="card-img-top" alt="Tampilan MBKM">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $mbkm->mbkm_name }}</h5>
                 <p class="card-text">Rating: {{ $mbkm->reviewmbkm->avg('rating') }}</p>

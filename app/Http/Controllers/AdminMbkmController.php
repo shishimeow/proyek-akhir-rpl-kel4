@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\mbkm;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
@@ -47,12 +48,15 @@ class AdminMbkmController extends Controller
         }
 
         $rules = [
-            'courses_name' => 'required|max:40|unique:mbkms',
+            'mbkm_name' => 'required|max:40|unique:mbkms',
             'positions' => 'required|max:200',
             'benefit' => 'required',
+            'periode_begin' => 'required',
+            'periode_end' => 'required',
             'requirements' => 'required',
             'picture' => 'image|file|max:1024',
-            'slug' => 'required|unique:mbkms'
+            'slug' => 'required|unique:mbkms',
+            'excerpt' => 'required'
         ];
 
         if($request->file('image')){
@@ -60,6 +64,7 @@ class AdminMbkmController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+        $validatedData['excerpt'] = Str::words($request->positions, 6);
 
         mbkm::create($validatedData);
         
@@ -93,9 +98,42 @@ class AdminMbkmController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, mbkm $course)
     {
-        //
+        if(!Auth::guard('admin')->check()){
+            return abort(403);
+        }
+
+        $rules = [
+            'mbkm_name' => 'required|max:40',
+            'positions' => 'required|max:200',
+            'benefit' => 'required',
+            'periode_begin' => 'required',
+            'periode_end' => 'required',
+            'requirements' => 'required',
+            'picture' => 'image|file|max:1024',
+            'excerpt' => 'required'
+        ];
+
+        if($request->slug != $course->slug){
+            $rules['slug'] = 'required|unique:App\Models\mbkm,slug,'.$course->id;
+        };
+
+        if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $course->update([
+                'picture' => $request->file('image')->store('post-images')
+            ]);
+        }
+
+        $validatedData = $request->validate($rules);
+        $validatedData['excerpt'] = Str::words($request->positions, 6);
+
+        mbkm::where('id', $course->id)->update($validatedData);
+        
+        return redirect('/admin/mbkm');
     }
 
     /**
@@ -106,5 +144,10 @@ class AdminMbkmController extends Controller
         mbkm::destroy($id);
         session()->flash('delete', 'Review berhasil dihapus!');
         return back();
+    }
+
+    public function checkSlug(Request $request){
+        $slug = SlugService::createSlug(mbkm::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

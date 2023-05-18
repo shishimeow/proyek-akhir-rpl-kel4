@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
             $table->string('faculty_name');
-            $table->string('slug');
+            $table->string('slug')->unique();
         });
     }
 

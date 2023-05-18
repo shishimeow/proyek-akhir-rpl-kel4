@@ -12,6 +12,7 @@ class Admin extends Authenticatable
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public $fillable = [
         'username',

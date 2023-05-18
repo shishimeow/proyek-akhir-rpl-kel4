@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
     public $fillable = [
         'rev_id',
         'user_id',

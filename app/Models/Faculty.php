@@ -9,6 +9,7 @@ class Faculty extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public $fillable = [
         'faculty_name',

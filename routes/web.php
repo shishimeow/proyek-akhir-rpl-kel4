@@ -73,8 +73,10 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function(){
     Route::get('/sc/checkSlug', [AdminScController::class, 'checkSlug']);
     Route::put('/sc/{course:slug}', [AdminScController::class, 'update']);
     Route::resource('/sc', AdminScController::class, ['expect' => ['show', 'update']]);
-    Route::resource('/mbkm', AdminMbkmController::class);
-    Route::resource('/faculty', AdminFacultyController::class);
+    Route::resource('/mbkm', AdminMbkmController::class, ['except' => 'update']);
+    Route::put('/mbkm/{course:slug}', [AdminMbkmController::class, 'update']);
+    Route::resource('/faculty', AdminFacultyController::class, ['except' => 'update']);
+    Route::put('/faculty/{faculty:slug}', [AdminFacultyController::class, 'update']);
     Route::resource('/user', AdminUserController::class);
 });
 

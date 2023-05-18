@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('support_courses', function (Blueprint $table) {
+            $table->id();
             $table->string('courses_id', 10)->unique();
-            $table->string('courses_name', 40);
+            $table->string('courses_name', 40)->unique();
             $table->foreignId('faculty_id');
             $table->string('course_credits', 10);
             $table->string('date', 30);
             $table->text('desc');
-            $table->string('picture')->nullable;
+            $table->string('picture')->nullable();
             $table->string('slug')->unique();
         });
     }

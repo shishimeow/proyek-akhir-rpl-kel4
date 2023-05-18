@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class mbkm extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public $fillable = [
         'mbkm_name',
@@ -32,5 +34,13 @@ class mbkm extends Model
 
     public function reviewmbkm(){
         return $this->hasMany(ReviewMbkm::class);
+    }
+
+    public function sluggable(): array{
+        return [
+            'slug' => [
+                'source' => 'courses_name'
+            ]
+        ];
     }
 }

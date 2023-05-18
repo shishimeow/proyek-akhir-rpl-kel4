@@ -33,7 +33,7 @@ class AdminScController extends Controller
     public function store(Request $request){
         $validate = $request->validate([
             'courses_id' => 'required|unique:support_courses|max:10',
-            'courses_name' => 'required|max:40',
+            'courses_name' => 'required|max:40|unique:support_courses',
             'course_credits' => 'required|max:10',
             'faculty_id' => 'required',
             'date' => 'required|max:30',
@@ -71,7 +71,7 @@ class AdminScController extends Controller
 
         $rules = [
             'courses_id' => 'required|max:10|unique:App\Models\SupportCourse,courses_id,'.$course->id,
-            'courses_name' => 'required|max:40',
+            'courses_name' => 'required|max:40|unique:App\Models\SupportCourse,courses_name,'.$course->id,
             'course_credits' => 'required|max:10',
             'faculty_id' => 'required',
             'date' => 'required|max:30',

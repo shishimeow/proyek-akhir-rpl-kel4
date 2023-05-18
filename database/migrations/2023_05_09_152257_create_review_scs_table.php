@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('review_scs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text('rev_sc');
+            $table->foreignId('courses_id');
+            $table->foreignId('user_id');
+            $table->double('rating')->nullable();
         });
     }
 
