@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('rev_id');
             $table->foreignId('parent_id')->nullable();
             $table->text('comment');
-            $table->bigInteger('commentable_id')->unique();
+            $table->bigInteger('commentable_id');
             $table->string('commentable_type');
             $table->string('type', 20)->nullable();
         });

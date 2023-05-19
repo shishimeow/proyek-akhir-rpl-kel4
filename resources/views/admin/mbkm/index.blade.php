@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <form action="/admin/mbkm/create">
+          <form action="{{ route('mbkm.create') }}">
             <button type="submit" class="btn btn-primary" name="action">Tambah Course</button>
           </form>
             @foreach($lists as $list)
@@ -35,11 +35,9 @@
                     <td>{{ $list->picture }}</td>
                     <td>{{ $list->slug }}</td>
                     <td>
-                      <form action="/admin/mbkm/{{ $list->slug }}/edit">
-                        <button type="submit" class="btn btn-primary" name="action" value="edit">Edit</button>
-                      </form>
+                      <a href="{{ route('mbkm.edit', $list->slug)  }}"><button type="submit" class="btn btn-primary m-1">Update</button></a>
 
-                      <form action="/admin/mbkm/{{ $list->id }}" method="POST">
+                      <form action="{{ route('mbkm.destroy', $list->slug)  }}" method="POST">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>

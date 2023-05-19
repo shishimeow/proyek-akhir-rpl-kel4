@@ -83,12 +83,13 @@ class AdminFacultyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Faculty $faculty)
+    public function update(Request $request, $slug)
     {
         if(!Auth::guard('admin')->check()){
             return abort(403);
         }
 
+        $faculty = Faculty::where('slug', $slug)->first();
         $rules = [
             'faculty_name' => 'required|max:40',
         ];
@@ -107,9 +108,13 @@ class AdminFacultyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($slug)
     {
-        //
+        $id = Faculty::where('slug', $slug)->select('id')->get();
+
+        Faculty::destroy($id);
+        session()->flash('delete', 'Review berhasil dihapus!');
+        return back();
     }
 
     public function checkSlug(Request $request){

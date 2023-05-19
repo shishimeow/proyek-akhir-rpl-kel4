@@ -3,7 +3,7 @@
 @section('container')
     <h1>{{ $title }}</h1>
     <div class="main">
-        <form action="/admin/mbkm" method="POST" class="row justify-content-center g-3" enctype="multipart/form-data">
+        <form action="{{ route('mbkm.store') }}" method="POST" class="row justify-content-center g-3" enctype="multipart/form-data">
             @csrf
             <div class="col-12">
                 <label for="mbkm_name" class="form-label">Nama MBKM</label>
@@ -53,8 +53,9 @@
             </div>
 
             <div class="mb-3">
-                <label for="picture" class="form-label">Ilustrasi Course</label>   
-                <input class="form-control" type="file" id="image" name="image">
+                <label for="image" class="form-label">Ilustrasi Course</label>
+                <img class="img-preview img-fluid mb-3 col-sm-5">   
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
             </div>
 
             <div class="col-12">
@@ -81,4 +82,5 @@
                 .then(data => slug.value = data.slug)
         });
     </script>
+    @include('layouts.preview')
 @endsection

@@ -11,6 +11,15 @@
     <div class="main">
         <form action="/profile" method="POST" class="row justify-content-center g-3">
             @csrf
+            <div class="rounded-image">
+                @if(auth()->user()->picture)
+                <img src="{{ asset('storage/'. auth()->user()->picture) }}" class="img-preview img-fluid">
+                @else
+                <img src="{{ URL::to('/') }}/img/user.png" alt="Tampilan User" width="200" style="border-radius: 50%; border: 1px solid black;">
+                @endif
+            </div>
+
+
             <div class="col-12">
                 <label for="name" class="form-label">Nama</label>
                 <input type="text" name="name" class="form-control" id="name" value="{{ auth()->user()->name }}" required>

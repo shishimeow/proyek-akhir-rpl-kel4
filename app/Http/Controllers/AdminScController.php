@@ -64,11 +64,12 @@ class AdminScController extends Controller
         ]);
     }
 
-    public function update(Request $request, SupportCourse $course){
+    public function update(Request $request, $slug){
         if(!Auth::guard('admin')->check()){
             return abort(403);
         }
-
+        
+        $course = SupportCourse::where('slug', $slug)->first();
         $rules = [
             'courses_id' => 'required|max:10|unique:App\Models\SupportCourse,courses_id,'.$course->id,
             'courses_name' => 'required|max:40|unique:App\Models\SupportCourse,courses_name,'.$course->id,
@@ -99,8 +100,13 @@ class AdminScController extends Controller
         return redirect('/admin/sc');
     }
 
-    public function destroy(Request $request){
-        $id = $request->input('rev_id');
+    public function destroy($slug){
+        $course = SupportCourse::where('slug', $slug)->first();
+        $id = SupportCourse::where('slug', $slug)->select('id')->get();
+
+        if($course->picture){
+            Storage::delete($course->picture);
+        }
 
         SupportCourse::destroy($id);
         session()->flash('delete', 'Review berhasil dihapus!');

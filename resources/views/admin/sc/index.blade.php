@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <a href="/admin/sc/create"><button type="submit" class="btn btn-primary m-1">Tambah Course</button></a>
+          <a href="{{ route('sc.create') }}"><button type="submit" class="btn btn-primary m-1">Tambah Course</button></a>
             @foreach($lists as $list)
                 <tr>
                     <td>{{ $num++ }}</td>
@@ -31,12 +31,12 @@
                     <td>{{ $list->picture }}</td>
                     <td>{{ $list->slug }}</td>
                     <td>
-                        <a href="/admin/sc/{{ $list->slug }}/edit"><button type="submit" class="btn btn-primary m-1">Update</button></a>
+                        <a href="{{ route('sc.edit', $list->slug)  }}"><button type="submit" class="btn btn-primary m-1">Update</button></a>
 
-                        <form action="/admin/sc/delete" method="POST">
+                        <form action="{{ route('sc.destroy', $list->slug)  }}" method="POST">
                           @method('delete')
                           @csrf
-                          <input type="hidden" name="rev_id" value="{{ $list->id }}">
+                          {{-- <input type="hidden" name="rev_id" value="{{ $list->id }}"> --}}
                           <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
                         </form>
                     </td>

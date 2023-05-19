@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <form action="/admin/faculty/create">
+          <form action="{{ route('faculty.create') }}">
             <button type="submit" class="btn btn-primary" name="action">Tambah Fakultas</button>
           </form>
             @foreach($lists as $list)
@@ -23,7 +23,7 @@
                     <td>{{ $list->faculty_name }}</td>
                     <td>{{ $list->slug }}</td>
                     <td>
-                      <a href="/admin/faculty/{{ $list->slug }}/edit"><button type="submit" class="btn btn-primary m-1">Update</button></a>
+                      <a href="{{ route('faculty.edit', $list->slug)  }}"><button type="submit" class="btn btn-primary m-1">Update</button></a>
       
                       <form action="/admin/faculty/delete" method="POST">
                         @method('delete')

@@ -98,12 +98,13 @@ class AdminMbkmController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, mbkm $course)
+    public function update(Request $request, $slug)
     {
         if(!Auth::guard('admin')->check()){
             return abort(403);
         }
 
+        $course = mbkm::where('slug', $slug)->first();
         $rules = [
             'mbkm_name' => 'required|max:40',
             'positions' => 'required|max:200',
@@ -139,8 +140,15 @@ class AdminMbkmController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
+        $course = mbkm::where('slug', $slug)->first();
+        $id = mbkm::where('slug', $slug)->select('id')->get();
+
+        if($course->picture){
+            Storage::delete($course->picture);
+        }
+
         mbkm::destroy($id);
         session()->flash('delete', 'Review berhasil dihapus!');
         return back();

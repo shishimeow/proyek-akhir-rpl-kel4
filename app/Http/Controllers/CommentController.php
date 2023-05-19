@@ -52,10 +52,12 @@ class CommentController extends Controller
                 $reply->user()->associate($request->user());
         
                 $tipe = $request->type;
-                if($tipe == 'sc')
+                if($tipe == 'sc'){
                     $review = ReviewSc::find($request->rev_id);
-                else
+                }
+                else{
                     $review = ReviewMbkm::find($request->rev_id);
+                }
                 
                 $review->comments()->save($reply); 
 

@@ -4,11 +4,9 @@
     {{ $title }} - {{ $course->courses_id }} {{ $course->courses_name }}
 
     <div class="main">
-        <form action="/admin/sc/{{ $course->slug }}" method="POST" class="row justify-content-center g-3" enctype="multipart/form-data">
+        <form action="{{ route('sc.update', $course->slug) }}" method="POST" class="row justify-content-center g-3" enctype="multipart/form-data">
             @csrf
             @method('put')
-            <input type="hidden" name="oldImage" value="{{ $course->picture }}">
-
             <div class="col-12">
                 <label for="courses_id" class="form-label">ID Course</label>
                 <input type="text" name="courses_id" class="form-control @error('courses_id') is-invalid @enderror" id="courses_id" value="{{ old('courses_id', $course->courses_id) }}" required>
@@ -28,9 +26,9 @@
             <div class="col-12">
               <label for="facultyid" class="form-label">Fakultas</label>
               <select class="form-select" name="faculty_id">
-                <option selected>Pilih fakultas</option>
+                <option value="option_select" disabled selected>Pilih fakultas</option>
                 @foreach($faculties as $faculty)
-                <option value="{{ $faculty->id }}" {{ $faculty->id == old('id') ? 'selected' : '' }}>{{ $faculty->faculty_name }}</option>
+                <option value="{{ $faculty->id }}" {{ $faculty->id == $course->faculty_id ? 'selected' : '' }}>{{ $faculty->faculty_name }}</option>
                 @endforeach
               </select>
             </div>
@@ -51,15 +49,14 @@
             </div>
             
             <div class="mb-3">
-                <label for="picture" class="form-label">Ilustrasi Course</label>
+                <label for="image" class="form-label">Ilustrasi Course</label>
+                <input type="hidden" name="oldImage" value="{{ $course->picture }}">
                 @if($course->picture)
-                    <img src="{{ asset('storage/'. $course->picture) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                    <img src="{{ asset('storage/'. $course->picture) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block"> 
                 @else
-                    <img class="img-preview img-fluis mb-3 col-sm-5">
-                @endif
-
-                
-                <input class="form-control" type="file" id="image" name="image">
+                    <img class="img-preview img-fluid mb-3 col-sm-5"> 
+                @endif  
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
             </div>
             
             <div class="col-12">
@@ -90,4 +87,6 @@
             });
         }
     </script>
+
+    @include('layouts.preview')
 @endsection

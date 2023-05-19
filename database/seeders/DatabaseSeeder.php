@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'Software Engineer, Copywriter, Internet Marketing, etc',
             'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman',
             'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 3,00',
-            'slug' => 'shoperr'
+            'slug' => 'shopee'
         ]);
         
         mbkm::create([
