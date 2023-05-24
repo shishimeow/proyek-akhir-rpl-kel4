@@ -1,0 +1,337 @@
+/* ===========================
+		COMMON css
+===========================*/
+
+body {
+    font-family: "Inter", sans-serif !important;
+    font-weight: normal;
+    font-style: normal;
+    color: #5d657b;
+    overflow-x: hidden;
+    background: #f1f5f9;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  /* ============= typography css ============= */
+  
+  .h6 {
+    color: #262d3f;
+    margin: 0;
+  }
+  
+  
+  h6,
+  .h6 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  
+  
+  .text-medium {
+    font-weight: 500;
+  }
+  
+  
+  
+  .text-sm {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  
+  
+  
+  
+  /* ========== Buttons css ========== */
+  /* buttons base styles */
+  .main-btn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 15px 45px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    border: 1px solid transparent;
+    overflow: hidden;
+  }
+  .main-btn:hover {
+    color: inherit;
+  }
+  
+  .btn-sm {
+    padding: 10px 20px;
+    font-weight: 400;
+  }
+  
+  /* buttons hover effect */
+  .btn-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  
+  /* primary buttons */
+  .primary-btn {
+    background: #4a6cf7;
+    color: #fff;
+  }
+  .primary-btn:hover {
+    color: #fff;
+  }
+  
+  .primary-btn-outline {
+    background: transparent;
+    color: #4a6cf7;
+    border-color: #4a6cf7;
+  }
+  .primary-btn-outline:hover {
+    color: #fff;
+    background: #4a6cf7;
+  }
+  
+  
+  /* =========== form elements css ========== */
+  /* ===== input style ===== */
+  .input-style-1 {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .input-style-1 label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #262d3f;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .input-style-1 input,
+  .input-style-1 textarea {
+    width: 100%;
+    background: rgba(239, 239, 239, 0.5);
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 16px;
+    color: #5d657b;
+    resize: none;
+    transition: all 0.3s;
+  }
+  .input-style-1 input:focus,
+  .input-style-1 textarea:focus {
+    border-color: #4a6cf7;
+    background: #fff;
+  }
+  .input-style-1 input[type=date], .input-style-1 input[type=time],
+  .input-style-1 textarea[type=date],
+  .input-style-1 textarea[type=time] {
+    background: transparent;
+  }
+  
+  .input-style-2 {
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 1;
+  }
+  .input-style-2 label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #262d3f;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .input-style-2 input,
+  .input-style-2 textarea {
+    width: 100%;
+    background: rgba(239, 239, 239, 0.5);
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 16px;
+    color: #5d657b;
+    resize: none;
+    transition: all 0.3s;
+  }
+  .input-style-2 input:focus,
+  .input-style-2 textarea:focus {
+    border-color: #4a6cf7;
+    background: #fff;
+  }
+  .input-style-2 input[type=date], .input-style-2 input[type=time],
+  .input-style-2 textarea[type=date],
+  .input-style-2 textarea[type=time] {
+    background: transparent;
+  }
+  .input-style-2 input[type=date]::-webkit-inner-spin-button,
+  .input-style-2 input[type=date]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  .input-style-2 input[type=date] ~ .icon {
+    z-index: -1;
+  }
+  .input-style-2 .icon {
+    position: absolute;
+    padding: 17px;
+  }
+  
+  .input-style-3 {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .input-style-3 label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #262d3f;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .input-style-3 input,
+  .input-style-3 textarea {
+    width: 100%;
+    background: rgba(239, 239, 239, 0.5);
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 16px;
+    padding-left: 45px;
+    color: #5d657b;
+    resize: none;
+    transition: all 0.3s;
+  }
+  .input-style-3 input:focus,
+  .input-style-3 textarea:focus {
+    border-color: #4a6cf7;
+    background: #fff;
+  }
+  .input-style-3 .icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    padding: 16px;
+  }
+  
+  
+  
+  
+  /* ============ signin css ============= */
+  
+  
+  .signin-wrapper {
+    background: #fff;
+    padding: 60px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .signin-wrapper .singin-option a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ============ signup css ============= */
+  .auth-row {
+    background: #fff;
+    border-radius: 0px;
+    overflow: hidden;
+  }
+  
+  .auth-cover-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    background: url("../img/signin-image.png");
+  }
+  
+  .auth-cover-wrapper .auth-cover .cover-image {
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  .auth-cover-wrapper .auth-cover .cover-image img {
+    width: 100%;
+    height: 100%;
+  }
+  @media (max-width: 767px) {
+    .auth-cover-wrapper {
+    display: none;
+    }
+  
+  }
+  @media (max-width: 767px) {
+    .auth-cover-wrapper .auth-cover .title h1 {
+      font-size: 24px;
+    }
+  }
+  
+  .signup-wrapper {
+    background: #fff;
+    padding: 60px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .signin-wrapper .singin-option button {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .signin-wrapper .singin-option button {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  @media (max-width: 767px) {
+    .signin-wrapper .singin-option button {
+      width: 100%;
+    }
+  }
+  @media only screen and (min-width: 550px) and (max-width: 767px) {
+    .signin-wrapper .singin-option button {
+      width: auto;
+    }
+  }
+  
+  .signup-wrapper .singup-option a:hover {
+    text-decoration: underline;
+  }
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .signin-wrapper {
+      padding: 40px;
+    }
+  }
+  @media (max-width: 767px) {
+    .signin-wrapper {
+      padding: 30px;
+    }
+  }
+  .text-sm {
+    padding-top: 20px;
+  }
+  
+  

@@ -40,7 +40,7 @@ Route::prefix('sc')->middleware(['auth'])->group(function(){
     Route::match(['get', 'post'], '/', [ScController::class, 'index']);
     Route::get('/{course:slug}', [ScController::class, 'show']);
     Route::get('/', [ScController::class, 'search'])->name('searchsc.add');
-    Route::post('/{course:slug}', [ScController::class, 'store']);
+    Route::post('/storerev/{course:slug}', [ScController::class, 'store'])->name('storerev.add');
     Route::post('/', [ScController::class, 'filter'])->name('filtersc.add');
     Route::put('/update', [ScController::class, 'update'])->name('scupdate.add');
     Route::delete('/delete', [ScController::class, 'destroy'])->name('scdelete.add');
@@ -57,7 +57,7 @@ Route::prefix('mbkm')->middleware(['auth'])->group(function(){
     Route::match(['get', 'post'], '/', [MbkmController::class, 'index']);
     Route::get('/{course:slug}', [MbkmController::class, 'show']);
     Route::get('/', [MbkmController::class, 'search'])->name('searchm.add');
-    Route::post('/filterMonth', [MbkmController::class, 'filterMonth'])->name('filterm.add');
+    Route::post('/', [MbkmController::class, 'filter'])->name('filterm.add');
     Route::post('/{course:slug}', [MbkmController::class, 'store']);
     Route::put('/update', [MbkmController::class, 'update'])->name('mupdate.add');
     Route::delete('/delete', [MbkmController::class, 'destroy'])->name('mdelete.add');

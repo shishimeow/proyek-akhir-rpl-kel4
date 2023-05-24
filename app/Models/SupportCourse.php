@@ -20,6 +20,7 @@ class SupportCourse extends Model
         'date',
         'desc',
         'picture',
+        'rating',
         'slug'
     ];
 

@@ -40,7 +40,7 @@
 
     <h3>Rating</h3>
     <div>
-        <p>Rating: {{ $reviews->avg('rating') }}</p>
+        <p>Rating: {{ $mbkm->rating }}</p>
         <p>Banyak review: {{ $reviews->count() }} review</p>
         @for($i=0; $i<5; $i++)
             @if($reviews->count() == 0)
@@ -91,6 +91,9 @@
     <form class="collapse multi-collapse" action="{{ route('mupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
         @method('put')
         @csrf
+
+        @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
+
         <input type="hidden" name="rev_id" value="{{ $review->id }}">
         <div class="col-12">
             <textarea class="col-8 d-flex" rows="5" name="rev_mbkm" id="rev_mbkm" wrap="hard" required>{{ $review->rev_mbkm }}</textarea>

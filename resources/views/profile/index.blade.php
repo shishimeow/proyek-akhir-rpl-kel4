@@ -9,16 +9,17 @@
     @endif
     <h1>{{ $title }}</h1>
     <div class="main">
-        <form action="/profile" method="POST" class="row justify-content-center g-3">
+        <form action="/profile" method="POST" class="row justify-content-center g-3" enctype="multipart/form-data">
             @csrf
             <div class="rounded-image">
-                @if(auth()->user()->picture)
-                <img src="{{ asset('storage/'. auth()->user()->picture) }}" class="img-preview img-fluid">
+                <input type="hidden" name="oldImage" value="{{ auth()->user()->image }}">
+                @if(auth()->user()->image)
+                <img src="{{ asset('storage/'. auth()->user()->image) }}" alt="Tampilan User" width="200" style="border-radius: 50%; border: 1px solid black;">
                 @else
                 <img src="{{ URL::to('/') }}/img/user.png" alt="Tampilan User" width="200" style="border-radius: 50%; border: 1px solid black;">
                 @endif
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()">
             </div>
-
 
             <div class="col-12">
                 <label for="name" class="form-label">Nama</label>
@@ -41,4 +42,6 @@
             </div>
         </form>
     </div>
+
+    @include('layouts.preview')
 @endsection

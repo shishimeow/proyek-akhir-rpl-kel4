@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('benefit');
             $table->text('requirements');
             $table->string('picture')->nullable();
+            $table->double('rating')->nullable();
             $table->string('slug')->unique();
         });
     }

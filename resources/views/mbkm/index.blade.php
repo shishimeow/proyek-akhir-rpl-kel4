@@ -28,6 +28,30 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
+        <br>
+        <form action="{{ route('filterm.add') }}" method="POST">
+            @csrf
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="1" id="option1" name="rate">
+                <label class="form-check-label" for="option1">
+                    Bintang 5
+                </label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="2" id="option2" name="rate">
+                <label class="form-check-label" for="option2">
+                    Bintang lebih dari 4
+                </label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="3" id="option3" name="rate">
+                <label class="form-check-label" for="option3">
+                    Bintang kurang dari 4
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
 
         @foreach ($mbkms as $mbkm)
         <div class="card" style="width: 18rem;">
@@ -38,7 +62,7 @@
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $mbkm->mbkm_name }}</h5>
-                <p class="card-text">Rating: {{ $mbkm->reviewmbkm->avg('rating') }}</p>
+                <p class="card-text">Rating: {{ $mbkm->rating }}</p>
                 <p class="card-text">Periode pendaftaran: {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }} - {{ \Carbon\Carbon::parse($mbkm->periode_end)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</p>
                 <p class="card-text">{{ $mbkm->excerpt }}</p>
                 <a href="/mbkm/{{ $mbkm->slug }}" class="btn btn-primary">Read more</a>

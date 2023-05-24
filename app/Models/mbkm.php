@@ -21,6 +21,7 @@ class mbkm extends Model
         'benefit',
         'requirements',
         'picture',
+        'rating',
         'slug'
     ];
 

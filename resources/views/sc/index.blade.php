@@ -28,6 +28,30 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
+        <br>
+        <form action="{{ route('filtersc.add') }}" method="POST">
+            @csrf
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="1" id="option1" name="rate">
+                <label class="form-check-label" for="option1">
+                    Bintang 5
+                </label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="2" id="option2" name="rate">
+                <label class="form-check-label" for="option2">
+                    Bintang lebih dari 4
+                </label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="3" id="option3" name="rate">
+                <label class="form-check-label" for="option3">
+                    Bintang kurang dari 4
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
         @foreach ($support_courses as $support_course)
         <div class="card" style="width: 18rem;">
             @if($support_course->picture)
@@ -37,7 +61,7 @@
             @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                <p class="card-text">Rating: {{ $support_course->reviewscs->avg('rating') }}</p>
+                <p class="card-text">Rating: {{ $support_course->rating }}</p>
                 <a href="/sc/{{ $support_course->slug }}" class="btn btn-primary">Read more</a>
             </div>
         </div>

@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'course_credits' => '2-1',
             'date' => 'Selasa, 13.00 WIB',
             'desc' => 'Struktur data adalah mata kuliah yang dijamin membuat kamu terheran-heran kenapa milik matkul ini. Asli, mana dosen dengan inisial A tidak ramah mental semua, tugas 10% nya juga tidak worth it',
+            'rating' => 0.0,
             'slug' => 'kom120h-struktur-data'
         ]);
         
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
             'course_credits' => '2-1',
             'date' => 'Rabu, 13.00 WIB',
             'desc' => 'Pemrograman adalah salah satu mata kuliah yang dijamin ngebuat lu merenungkan hidup, terutama selama 3 jam masa ujian praktikum. Asli, lu bakal bingung marah marah bete sendiri. Apalagi kalo lu yakin udh coba bisa tapi pas submit tetep merah. Memang rasanya ingin terjun ke jurang.',
+            'rating' => 0.0,
             'slug' => 'kom120c-pemrograman'
         ]);
         
@@ -52,6 +54,7 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'Software Engineer, Copywriter, Internet Marketing, etc',
             'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman',
             'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 3,00',
+            'rating' => 0.0,
             'slug' => 'shopee'
         ]);
         
@@ -63,6 +66,7 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'Software Engineer, Copywriter, Creative Graphic Designer, etc',
             'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman. Membangun dan memperluas koneksi. Mengeksplorasi dunia nyata teknik, biknis, dan marketing',
             'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 3,00',
+            'rating' => 0.0,
             'slug' => 'tokopedia'
         ]);
         
@@ -74,6 +78,7 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'Software Engineer, Social Media, Internet Marketing, etc',
             'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman. Membangun dan memperluas koneksi',
             'requirements' => 'Mahasiswa semester 6-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 2,75',
+            'rating' => 0.0,
             'slug' => 'blibli'
         ]);
         

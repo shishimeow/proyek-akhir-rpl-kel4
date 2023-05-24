@@ -36,7 +36,7 @@
     <br>
     <h3>Rating</h3>
     <div>
-        <p>Rating: {{ $reviews->avg('rating') }}</p>
+        <p>Rating: {{ $support_course->rating }}</p>
         <p>Banyak review: {{ $reviews->count() }} review</p>
         @for($i=0; $i<5; $i++)
             @if($reviews->count() == 0)
@@ -52,7 +52,7 @@
     
     <div>
         {{ auth()->user()->username }}
-        <form action="" method="POST">
+        <form action="{{ route('storerev.add', $support_course->slug) }}" method="POST">
             @csrf
 
             @include('partials.rating', ['course' => $support_course])
@@ -91,6 +91,9 @@
                 <form class="collapse multi-collapse" action="{{ route('scupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
                     @method('put')
                     @csrf
+
+                    @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
+                    
                     <input type="hidden" name="rev_id" value="{{ $review->id }}">
                     <div class="col-12">
                         <textarea class="col-8 d-flex" rows="5" name="rev_sc" id="rev_sc" wrap="hard" required>{{ $review->rev_sc }}</textarea>

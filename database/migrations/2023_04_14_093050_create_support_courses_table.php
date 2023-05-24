@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('course_credits', 10);
             $table->string('date', 30);
             $table->text('desc');
+            $table->double('rating')->nullable();
             $table->string('picture')->nullable();
             $table->string('slug')->unique();
         });

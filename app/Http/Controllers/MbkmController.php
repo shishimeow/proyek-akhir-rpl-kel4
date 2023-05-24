@@ -33,18 +33,38 @@ class MbkmController extends Controller
         ]);
     }
 
-    public function filterMonth(Request $request){
+    public function filter(Request $request){
+        $months = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+
         if($request->has('filter')){
             $filters = $request->input('filter');
             $mbkm = Mbkm::whereIn(Mbkm::raw('MONTH(periode_begin)'), $filters)->get();
-            $months = [
-                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-            ];
 
             return view('mbkm.index', [
                 'title' => 'MBKM',
                 'mbkms' => $mbkm,
+                'months' => $months
+            ]);
+        }
+        else if($request->has('rate')){
+            $course = [];
+            $filter = (int) $request->input('rate');
+
+            switch($filter){
+                case 1: $course = mbkm::where('rating', 5)->select('mbkm_name', 'periode_begin', 'periode_end', 'excerpt', 'slug', 'rating')->get();
+                        break;
+                case 2: $course = mbkm::whereBetween('rating', [4, 4.99])->select('mbkm_name', 'periode_begin', 'periode_end', 'excerpt', 'slug', 'rating')->get();
+                        break;
+                case 3: $course = mbkm::where('rating', '<', 4)->select('mbkm_name', 'periode_begin', 'periode_end', 'excerpt', 'slug', 'rating')->get();
+                        break;
+            };
+
+            return view('mbkm.index', [
+                'title' => 'MBKM',
+                'mbkms' => $course,
                 'months' => $months
             ]);
         }
@@ -98,12 +118,12 @@ class MbkmController extends Controller
 
     public function update(Request $request){
         $id = $request->input('rev_id');
-        $review = Mbkm::where('id', $id);
-
-        $review->update([
-            'rev_mbkm' => $request->input('rev_mbkm')
-        ]);
-
+        $review = ReviewMbkm::findOrFail($id);
+    
+        $review->rev_mbkm = $request->input('rev_mbkm');
+        $review->rating = $request->input('rating');
+        $review->save();
+    
         return back();
     }
 

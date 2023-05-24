@@ -34,4 +34,8 @@ class User extends Authenticatable
         return $this->hasMany(ReviewSc::class, 'id');
     }
 
+    public function reviewmbkms(){
+        return $this->hasMany(ReviewMbkm::class, 'id');
+    }
+
 }
