@@ -1,24 +1,49 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-      <a class="navbar-brand" href="/">I-Course IPB</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
-          <a class="nav-link" href="/sc">SC</a>
-          <a class="nav-link" href="/mbkm">MBKM</a>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+          <!-- Menu -->
+  
+          <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+            <div class="app-brand demo">     
+                <span class="app-brand-text demo menu-text fw-bolder ms-2">I-Course IPB</span>
+              </a>
+  
+              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+              </a>
+            </div>
+  
+            <div class="menu-inner-shadow"></div>
+  
+            <ul class="menu-inner py-1">
+              <!-- Components -->
+              
+              <!-- Cards -->
+              <li class="menu-item">
+                <a href="/sc" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Supporting Course (SC)</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="/mbkm" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Merdeka Belajar Kampus Merdeka (MBKM)</div>
+                </a>
+              </li>
+              @can('admin')
 
-          @auth
-          <a class="nav-link" href="/profile">Akun Profile</a>
-          <form action="/logout" method="POST">
-            <a class="nav-link" href="/logout">Logout</a>
-          </form>
-          @else
-          <a class="nav-link" href="/login">Login</a>
-          @endauth
-        </div>
-      </div>
-    </div>
-</nav>
+              <li class="menu-item">
+                <a href="/admin" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Dashboard Admin</div>
+                </a>
+              </li>
+
+              @endcan
+                </ul>
+              </li>
+          </ul>
+      </aside>
+  
+      <!-- Layout container -->

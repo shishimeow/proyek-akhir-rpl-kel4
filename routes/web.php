@@ -28,6 +28,7 @@ use App\Http\Controllers\AdminFacultyController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/search', [HomeController::class, 'search'])->name('search.add');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -40,7 +41,7 @@ Route::prefix('sc')->middleware(['auth'])->group(function(){
     Route::match(['get', 'post'], '/', [ScController::class, 'index']);
     Route::get('/{course:slug}', [ScController::class, 'show']);
     Route::get('/', [ScController::class, 'search'])->name('searchsc.add');
-    Route::post('/storerev/{course:slug}', [ScController::class, 'store'])->name('storerev.add');
+    Route::post('/{course:slug}', [ScController::class, 'store'])->name('storerev.add');
     Route::post('/', [ScController::class, 'filter'])->name('filtersc.add');
     Route::put('/update', [ScController::class, 'update'])->name('scupdate.add');
     Route::delete('/delete', [ScController::class, 'destroy'])->name('scdelete.add');
@@ -65,20 +66,16 @@ Route::prefix('mbkm')->middleware(['auth'])->group(function(){
 
 Route::prefix('profile')->middleware(['auth'])->group(function(){
     Route::match(['get', 'post'], '/', [UserController::class, 'index']);
-    Route::post('/', [UserController::class, 'update']);
+    Route::put('/', [UserController::class, 'update'])->name('profupdate.add');
 });
 
-Route::prefix('admin')->middleware(['auth:admin'])->group(function(){
+Route::prefix('admin')->middleware(['admin'])->group(function(){
     Route::get('/', [AdminController::class, 'index']);
     Route::get('/sc/checkSlug', [AdminScController::class, 'checkSlug']);
     Route::resource('/sc', AdminScController::class, ['expect' => 'show']);
     Route::resource('/mbkm', AdminMbkmController::class, ['except' => 'show']);
-    Route::resource('/faculty', AdminFacultyController::class, ['except' => 'update']);
-    Route::put('/faculty/{faculty:slug}', [AdminFacultyController::class, 'update']);
-    Route::resource('/user', AdminUserController::class);
+    Route::resource('/faculty', AdminFacultyController::class, ['except' => 'show']);
+    Route::resource('/user', AdminUserController::class, ['except' => ['show', 'store', 'create', 'update', 'edit']]);
 });
 
-// Route::get('/admin', [AdminController::class, 'index']);
-// Route::resource('/admin/sc', AdminScController::class);
-// Route::resource('')
 

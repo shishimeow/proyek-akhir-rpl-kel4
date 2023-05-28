@@ -40,19 +40,4 @@ class ReviewScObserver
     {
         $this->updateAverageRating($reviewSc);
     }
-    /**
-     * Handle the ReviewSc "restored" event.
-     */
-    public function restored(ReviewSc $reviewSc): void
-    {
-        //
-    }
-
-    /**
-     * Handle the ReviewSc "force deleted" event.
-     */
-    public function forceDeleted(ReviewSc $reviewSc): void
-    {
-        //
-    }
 }

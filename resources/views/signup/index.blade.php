@@ -1,40 +1,116 @@
-@extends('layouts.main')
+@extends('layouts.logsign')
 
 @section('container')
-    @if(session()->has('signError'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('signError') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+<div class="row g-0 auth-row">
+    <div class="col-lg-6">
+      <div class="auth-cover-wrapper bg-primary-100">
+        <div class="auth-cover">
+          <img src={{ asset("img/assetslogin/auth/logo.png") }}>
+          
+          <div class="title text-center">
+            <h1 class="welcome-text mt-5">Welcome!</h1>
+            <h2 class="Course">
+              Course Selection made easily with I-Course Center </h2>
+            <h3 class = "namaweb"> I-Course Center </h3>
+          </div>
+          
+        </div>
+      </div>
     </div>
-    @endif
-    <main class="container mt-4 mb-5">
-        <h1 class="text-center mb-5">{{ $title }}</h1>
-        <form action="/signup" method="POST" class="row justify-content-center g-3">
+    <!-- end col -->
+    <div class="col-lg-6">
+      <div class="signup-wrapper">
+        <div class="form-wrapper">
+          <h4 class="signuptext">Sign Up</h4>
+          <p class="text-sm mb-25">
+            Create your account
+          </p>
+          <form action="/signup" methode="POST">
             @csrf
-            <div class="col-12">
-                <label for="name" class="form-label">Nama</label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" required>
+            <div class="row">
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Name</label>
+                    <input type="text" placeholder="Name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required/>
+                  </div>
             </div>
-            <div class="col-12">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" value="{{ old('username') }}" required>
+            <div class="row">
+              <div class="col-12">
+                <div class="input-style-1">
+                  <label>Username</label>
+                  <input type="text" placeholder="Username" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" required/>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-12">
+                <div class="input-style-1">
+                  <label>Email</label>
+                  <input type="email" placeholder="Email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required/>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-12">
+                <div class="input-style-1">
+                  <label>Password</label>
+                  <input type="password" placeholder="Password" name="password" class="form-control @error('password') is-invalid @enderror" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,100}" title="Minimal satu angka, satu huruf kecil, satu huruf kapital, dan sepanjang 8 karakter atau lebih!"/>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="input-style-1">
+                  <label>Confirm Password</label>
+                  <input type="password" placeholder="Confirm Password" name="passowrd_confirmation" class="form-control @error('password') is-invalid @enderror" required/>
+                </div>
+              </div>
+
+              <!-- end col -->
+             
+              <!-- end col -->
+              <div class="col-12">
+                <div
+                  class="
+                    button-group
+                    d-flex
+                    justify-content-center
+                    flex-wrap
+                  "
+                >
+                  <button
+                    class="
+                      main-btn
+                      primary-btn
+                      btn-hover
+                      w-100
+                      text-center
+                    "
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="col-12">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" required>
-            </div>
-            <div class="col-md-6">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,100}" title="Minimal satu angka, satu huruf kecil, satu huruf kapital, dan sepanjang 8 karakter atau lebih!">
-            </div>
-            <div class="col-md-6">
-              <label for="password" class="form-label">Confirmation Password</label>
-              <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" id="password" name="password_confirmation" required>
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-            </div>
-        </form>
-    </main>
+            <!-- end row -->
+          
+
+            <p class="text-sm text-medium text-dark text-center">
+              Already have an account? <a href="/login">Login</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end col -->
+  </div>
+  <!-- end row -->
+</div>
+</section>
+<!-- ========== signin-section end ========== -->
+
+
+
+<!-- ========= All Javascript files linkup ======== -->
+<script src={{ asset("js/assets/bootstrap.bundle.min.js") }}></script>
+<script src={{ asset("js/assets/main.js") }}></script>
 
 @endsection

@@ -8,11 +8,16 @@ use App\Models\ReviewSc;
 use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ScController extends Controller
 {
     public function index(){
+        if(!Auth::guard('web')->check() || !Auth::guard('admin')->check()){
+            return redirect('/login');
+        }
+
         return view('sc.index',  [
             'title' => 'Supporting Course',
             'support_courses' => SupportCourse::all(),
@@ -74,8 +79,8 @@ class ScController extends Controller
     }
 
     public function filter(Request $request){
-        if($request->has('filter')){
-            $filters = $request->input('filter');
+        if($request->has('filter') && $request->input('filter') != 'all'){
+            $filters = (array) $request->input('filter');
             $support_courses = SupportCourse::whereIn('faculty_id', $filters)->select('courses_name', 'courses_id', 'slug', 'rating')->get();
 
             return view('sc.index', [
@@ -95,6 +100,7 @@ class ScController extends Controller
                         break;
                 case 3: $support_courses = SupportCourse::where('rating', '<', 4)->select('courses_name', 'courses_id', 'slug', 'rating')->get();
                         break;
+                default: $support_courses = SupportCourse::all();
             };
 
             return view('sc.index', [

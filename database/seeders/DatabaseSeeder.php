@@ -43,6 +43,41 @@ class DatabaseSeeder extends Seeder
             'rating' => 0.0,
             'slug' => 'kom120c-pemrograman'
         ]);
+
+        SupportCourse::create([
+            'courses_id' => 'KOM220C',
+            'courses_name' => 'Algoritma',
+            'faculty_id' => 2,
+            'course_credits' => '3-1',
+            'date' => 'Kamis, 09.00 WIB',
+            'desc' => 'Algoritma adalah salah satu mata kuliah yang melatih kemampuan logika dan pemecahan masalah. Dalam mata kuliah ini, kamu akan belajar tentang algoritma dasar, kompleksitas, dan strategi pemrograman.',
+            'rating' => 0.0,
+            'slug' => 'kom220c-algoritma'
+        ]);
+
+        SupportCourse::create([
+            'courses_id' => 'KOM420C',
+            'courses_name' => 'Pengembangan Web',
+            'faculty_id' => 2,
+            'course_credits' => '3-2',
+            'date' => 'Selasa, 10.00 WIB',
+            'desc' => 'Pengembangan Web adalah mata kuliah yang membahas tentang pembuatan aplikasi web. Kamu akan belajar tentang HTML, CSS, JavaScript, dan framework-web populer seperti Laravel dan React.',
+            'rating' => 0.0,
+            'slug' => 'kom420c-pengembangan-web'
+        ]);
+
+        SupportCourse::create([
+            'courses_id' => 'KOM520C',
+            'courses_name' => 'Kecerdasan Buatan',
+            'faculty_id' => 2,
+            'course_credits' => '3-3',
+            'date' => 'Rabu, 14.00 WIB',
+            'desc' => 'Kecerdasan Buatan adalah mata kuliah yang membahas tentang pengembangan sistem yang dapat melakukan tugas-tugas yang membutuhkan kecerdasan manusia. Kamu akan mempelajari konsep-konsep AI seperti machine learning, neural network, dan algoritma genetika.',
+            'rating' => 0.0,
+            'slug' => 'kom520c-kecerdasan-buatan'
+        ]);
+
+        
         
         // =============================================================
         
@@ -131,8 +166,10 @@ class DatabaseSeeder extends Seeder
         
         // ===========================================================
         
-        Admin::create([
+        User::create([
             'username' => '4everkanabross',
+            'email' => 'kanadmin@gmail.com',
+            'isAdmin' => TRUE,
             'password' => bcrypt('kanA@7365')
         ]);
         
@@ -144,5 +181,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'kana@gmail.com',
             'password' => bcrypt('DUMBwonton02')
         ]);
+
+        User::create([
+            'name' => 'Dilla',
+            'username' => 'dilicss',
+            'email' => 'dill@gmail.com',
+            'password' => bcrypt('DUMBwonton02')
+
+        ]);
+
+        // ===========================================================
+
     }
 }

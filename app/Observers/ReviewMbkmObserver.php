@@ -40,20 +40,4 @@ class ReviewMbkmObserver
     {
         $this->updateAverageRating($reviewMbkm);
     }
-
-    /**
-     * Handle the ReviewMbkm "restored" event.
-     */
-    public function restored(ReviewMbkm $reviewMbkm): void
-    {
-        //
-    }
-
-    /**
-     * Handle the ReviewMbkm "force deleted" event.
-     */
-    public function forceDeleted(ReviewMbkm $reviewMbkm): void
-    {
-        //
-    }
 }

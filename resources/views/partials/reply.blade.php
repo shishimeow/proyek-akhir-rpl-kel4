@@ -39,6 +39,7 @@
                     <input type="hidden" name="rev_id" value="{{ $comment->rev_id }}">
                     <input type="hidden" name="user_id" value="{{ $comment->user_id }}">
                     <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                    <input type="hidden" name="type" value="{{ $comment->type }}">
                     <div class="col-12">
                         <textarea class="col-8 d-flex" rows="5" name="comment" id="comment" wrap="hard"></textarea>
                     </div>

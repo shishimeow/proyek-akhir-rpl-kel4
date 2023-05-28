@@ -39,9 +39,9 @@ class MbkmController extends Controller
             'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
         ];
 
-        if($request->has('filter')){
-            $filters = $request->input('filter');
-            $mbkm = Mbkm::whereIn(Mbkm::raw('MONTH(periode_begin)'), $filters)->get();
+        if($request->has('filter') && $request->input('filter') != 'all'){
+            $filters = (array) $request->input('filter');
+            $mbkm = mbkm::whereIn(mbkm::raw('MONTH(periode_begin)'), $filters)->get();
 
             return view('mbkm.index', [
                 'title' => 'MBKM',
@@ -60,6 +60,7 @@ class MbkmController extends Controller
                         break;
                 case 3: $course = mbkm::where('rating', '<', 4)->select('mbkm_name', 'periode_begin', 'periode_end', 'excerpt', 'slug', 'rating')->get();
                         break;
+                default: $course = mbkm::all();
             };
 
             return view('mbkm.index', [

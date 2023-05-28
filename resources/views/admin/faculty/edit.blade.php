@@ -3,7 +3,8 @@
 @section('container')
     <h1>{{ $title }}</h1>
     <div class="main">
-        <form action="/admin/faculty/{{ $faculty->slug }}" method="POST" class="row justify-content-center g-3">
+        {{-- <form action="/admin/faculty/{{ $faculty->slug }}" method="POST" class="row justify-content-center g-3"> --}}
+        <form action="{{ route('faculty.update', $faculty->slug) }}" method="POST" class="row justify-content-center g-3">
             @csrf
             @method('put')
             <div class="col-12">

@@ -31,11 +31,14 @@ class User extends Authenticatable
     ];
 
     public function reviewscs(){
-        return $this->hasMany(ReviewSc::class, 'id');
+        return $this->hasMany(ReviewSc::class, 'user_id');
     }
 
     public function reviewmbkms(){
-        return $this->hasMany(ReviewMbkm::class, 'id');
+        return $this->hasMany(ReviewMbkm::class, 'user_id');
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 }

@@ -1,50 +1,92 @@
 @extends('layouts.adminmain')
 
 @section('container')
-    <h1>{{  $title }}</h1>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama MBKM</th>
-            <th scope="col">Waktu Mulai</th>
-            <th scope="col">Waktu Akhir</th>
-            <th scope="col">Desc Singkat</th>
-            <th scope="col">Posisi</th>
-            <th scope="col">Benefit</th>
-            <th scope="col">Requirements</th>
-            <th scope="col">Picture</th>
-            <th scope="col">Slug</th>
-            <th scope="col">Tindakan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <form action="{{ route('mbkm.create') }}">
-            <button type="submit" class="btn btn-primary" name="action">Tambah Course</button>
-          </form>
-            @foreach($lists as $list)
-                <tr>
-                    <td>{{ $num++ }}</td>
-                    <td>{{ $list->mbkm_name }}</td>
-                    <td>{{ $list->periode_begin }}</td>
-                    <td>{{ $list->periode_end }}</td>
-                    <td>{{ $list->excerpt }}</td>
-                    <td>{{ $list->positions }}</td>
-                    <td>{{ $list->benefit }}</td>
-                    <td>{{ $list->requirements }}</td>
-                    <td>{{ $list->picture }}</td>
-                    <td>{{ $list->slug }}</td>
-                    <td>
-                      <a href="{{ route('mbkm.edit', $list->slug)  }}"><button type="submit" class="btn btn-primary m-1">Update</button></a>
 
-                      <form action="{{ route('mbkm.destroy', $list->slug)  }}" method="POST">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
-                      </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-      </table>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+
+        @include('partials.adminav')
+
+        <!-- Layout container -->
+        <div class="layout-page">
+
+          @include('partials.search')
+
+          <!--content-->
+           <!-- Bootstrap Toasts with Placement -->
+           <!-- Content wrapper -->
+           <div class="content-wrapper">
+            <!-- Content -->
+            <div class="demo-inline-spacing custom-container">
+              <button type="button" class="btn btn-primary">Tambah MBKM</button>
+            </div>
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              
+              <!-- Basic Bootstrap Table -->
+              <div class="card">
+                
+                
+                    <table class="table">
+                        <tr>
+                          <th>No</th>
+                          <th>Nama MBKM</th>
+                          <th>Periode Mulai</th>  
+                          <th>Periode Akhir</th> 
+                          <th>Rating</th>
+                          <th>Slug</th>
+                          <th>Action</th>
+                        </tr>
+                        @foreach($lists as $list)
+                        <tr>
+                            <td>{{ $num++ }}</td>
+                            <td>{{ $list->mbkm_name }}</td>
+                            <td>{{ date('d-m-Y', strtotime($list->periode_begin)) }}</td>
+                            <td>{{ date('d-m-Y', strtotime($list->periode_end)) }}</td>
+                            <td>{{ $list->rating }}</td>
+                            <td>{{ $list->slug }}</td>
+                            <td>
+                              <form id="edit-form" action= "{{ route('mbkm.edit', $list->slug)  }}">
+                              <div class="demo-inline-spacing custom-edit">
+                                <button type="button" class="btn btn-primary">Add</button>
+                              </div>
+                              </form>
+                              <form id="delete-form" action="{{ route('mbkm.destroy', $list->slug)  }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <div class="demo-inline-spacing custom-edit">
+                                  <button type="button" class="btn btn-primary">Delete</button>
+                                </div>
+                              </form>
+                            </td>
+                        @endforeach
+
+                      </table>
+                </div>
+              </div>
+              <!--/ Basic Bootstrap Table -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('vendor/assets/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('vendor/assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('vendor/assets/js/menu.js') }}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="{{ asset('vendor/assets/libs/apex-charts/apexcharts.js') }}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('js/assets/main.js') }}"></script>
+
+    <!-- Page JS -->
+    <script src="{{ asset('js/assets/dashboards-analytics.js') }}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 @endsection

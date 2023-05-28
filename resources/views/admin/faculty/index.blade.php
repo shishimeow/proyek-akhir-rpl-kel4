@@ -1,39 +1,87 @@
 @extends('layouts.adminmain')
 
-@section('container')
-    <h1>{{  $title }}</h1>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Id Fakultas</th>
-            <th scope="col">Nama Fakultas</th>
-            <th scope="col">Slug</th>
-            <th scope="col">Tindakan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <form action="{{ route('faculty.create') }}">
-            <button type="submit" class="btn btn-primary" name="action">Tambah Fakultas</button>
-          </form>
-            @foreach($lists as $list)
-                <tr>
-                    <td>{{ $num++ }}</td>
-                    <td>{{ $list->id }}</td>
-                    <td>{{ $list->faculty_name }}</td>
-                    <td>{{ $list->slug }}</td>
-                    <td>
-                      <a href="{{ route('faculty.edit', $list->slug)  }}"><button type="submit" class="btn btn-primary m-1">Update</button></a>
-      
-                      <form action="/admin/faculty/delete" method="POST">
-                        @method('delete')
-                        @csrf
-                        <input type="hidden" name="fac_id" value="{{ $list->id }}">
-                        <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
-                      </form>
-                  </td>
-                </tr>
-            @endforeach
-        </tbody>
-      </table>
+@section('contianer')
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+
+        @include('partials.adminav')
+
+        <!-- Layout container -->
+        <div class="layout-page">
+
+          @include('partials.search')
+
+          <!--content-->
+           <!-- Bootstrap Toasts with Placement -->
+           <!-- Content wrapper -->
+           <div class="content-wrapper">
+            <!-- Content -->
+            <div class="demo-inline-spacing custom-container">
+              <button type="button" class="btn btn-primary">Tambah Fakultas</button>
+            </div>
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              
+              <!-- Basic Bootstrap Table -->
+              <div class="card">
+                
+                
+                    <table class="table">
+                        <tr>
+                          <th>No</th>
+                          <th>Nama Fakultas</th>
+                          <th>Slug</th>
+                          <th>Action</th>
+                        </tr>
+                        @foreach($lists as $list)
+                        <tr>
+                            <td>{{ $num++ }}</td>
+                            <td>{{ $list->faculty_name }}</td>
+                            <td>{{ $list->slug }}</td>
+                            <td>
+                              <form id="edit-form" action= "{{ route('faculty.edit', $list->slug)  }}">
+                              <div class="demo-inline-spacing custom-edit">
+                                <button type="button" class="btn btn-primary">Add</button>
+                              </div>
+                              </form>
+                              <form id="delete-form" action="{{ route('faculty.destroy', $list->slug)  }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <div class="demo-inline-spacing custom-edit">
+                                  <button type="button" class="btn btn-primary">Delete</button>
+                                </div>
+                              </form>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                      </table>
+                </div>
+              </div>
+              <!--/ Basic Bootstrap Table -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('vendor/assets/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('vendor/assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('vendor/assets/js/menu.js') }}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="{{ asset('vendor/assets/libs/apex-charts/apexcharts.js') }}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('js/assets/main.js') }}"></script>
+
+    <!-- Page JS -->
+    <script src="{{ asset('js/assets/dashboards-analytics.js') }}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 @endsection

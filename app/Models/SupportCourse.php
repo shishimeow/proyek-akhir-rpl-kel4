@@ -44,6 +44,6 @@ class SupportCourse extends Model
     }
 
     public function reviewscs(){
-        return $this->hasMany(ReviewSc::class, 'courses_id');
+        return $this->hasMany(ReviewSc::class);
     }
 }

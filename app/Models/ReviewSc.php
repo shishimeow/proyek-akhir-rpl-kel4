@@ -17,7 +17,7 @@ class ReviewSc extends Model
     ];
 
     public function supportcourse(){
-        return $this->belongsTo(SupportCourse::class, 'id');
+        return $this->belongsTo(SupportCourse::class, 'courses_id');
     }
 
     public function users(){

@@ -24,11 +24,11 @@ class Comment extends Model
     }
 
     public function reviewsc(){
-        return $this->belongsTo(ReviewSc::class);
+        return $this->belongsTo(ReviewSc::class, 'rev_id');
     }
 
     public function reviewmbkm(){
-        return $this->belongsTo(ReviewMbkm::class);
+        return $this->belongsTo(ReviewMbkm::class, 'rev_id');
     }
 
     public function replies(){

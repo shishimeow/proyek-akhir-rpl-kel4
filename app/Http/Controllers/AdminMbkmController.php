@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Storage;
 class AdminMbkmController extends Controller
 {
     public function index(){
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         return view('admin.mbkm.index', [
             'title' => 'Daftar MBKM',
             'lists' => mbkm::all(),
@@ -29,10 +25,6 @@ class AdminMbkmController extends Controller
      */
     public function create()
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         return view('admin.mbkm.create', [
             'title' => 'Tambah MBKM',
         ]);
@@ -43,10 +35,6 @@ class AdminMbkmController extends Controller
      */
     public function store(Request $request)
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $rules = [
             'mbkm_name' => 'required|max:40|unique:mbkms',
             'positions' => 'required|max:200',
@@ -84,10 +72,6 @@ class AdminMbkmController extends Controller
      */
     public function edit($slug)
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $course = mbkm::where('slug', $slug)->first();
         return view('admin.mbkm.edit', [
             'title' => 'Update MBKM',
@@ -100,10 +84,6 @@ class AdminMbkmController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $course = mbkm::where('slug', $slug)->first();
         $rules = [
             'mbkm_name' => 'required|max:40',

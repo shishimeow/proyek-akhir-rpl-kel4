@@ -52,10 +52,6 @@ class AdminScController extends Controller
     }
 
     public function edit($slug){
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $course = SupportCourse::where('slug', $slug)->first();
         return view('admin.sc.edit', [
             'title' => 'Edit Supporting Course',
@@ -65,10 +61,6 @@ class AdminScController extends Controller
     }
 
     public function update(Request $request, $slug){
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-        
         $course = SupportCourse::where('slug', $slug)->first();
         $rules = [
             'courses_id' => 'required|max:10|unique:App\Models\SupportCourse,courses_id,'.$course->id,

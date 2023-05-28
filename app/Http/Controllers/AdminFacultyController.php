@@ -10,10 +10,6 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 class AdminFacultyController extends Controller
 {
     public function index(){
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         return view('admin.faculty.index', [
             'title' => 'Daftar Fakultas',
             'lists' => Faculty::all(),
@@ -26,10 +22,6 @@ class AdminFacultyController extends Controller
      */
     public function create()
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         return view('admin.faculty.create', [
             'title' => 'Tambah Fakultas',
         ]);
@@ -40,10 +32,6 @@ class AdminFacultyController extends Controller
      */
     public function store(Request $request)
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $rules = [
             'faculty_name' => 'required|max:40',
             'slug' => 'required|unique:faculties',
@@ -69,10 +57,6 @@ class AdminFacultyController extends Controller
      */
     public function edit($slug)
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $faculty = Faculty::where('slug', $slug)->first();
         return view('admin.faculty.edit', [
             'title' => 'Update Fakultas',
@@ -85,10 +69,6 @@ class AdminFacultyController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        if(!Auth::guard('admin')->check()){
-            return abort(403);
-        }
-
         $faculty = Faculty::where('slug', $slug)->first();
         $rules = [
             'faculty_name' => 'required|max:40',
