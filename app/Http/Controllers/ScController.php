@@ -37,10 +37,6 @@ class ScController extends Controller
 
     public function store(Request $request, SupportCourse $course){
         switch ($request->input('action')) {
-            case 'cancel':
-
-                break;
-    
             case 'add':
                 $request->validate([
                     'rev_sc' => 'required',

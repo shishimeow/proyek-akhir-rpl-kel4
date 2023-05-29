@@ -113,53 +113,77 @@
                       </div>
                     </div>
                     <!-- Content wrapper -->
-                    <div class="container">
-                      <h3>Learner Review</h3>
-                      @foreach ($reviews->sortByDesc('created_at') as $review)
-                      <div class="comment__container opened" id="first-comment">
-                          <div class="comment__card">
-                              <strong>{{ $review->users->username }}</strong>
-                              {{ \Carbon\Carbon::parse($review->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
-                              <div class="form-group row">
-                                Rating: {{ $review->rating }}
-                              </div>
-                              <p>
-                                {{ $review->rev_sc }}
-                              </p>
-                              
-                              
+                    @foreach ($reviews->sortByDesc('created_at') as $review)
+                    <div class="card card-body col-12">
+                        <div class="col-12">
+                            <strong>{{ $review->users->username }}</strong>
+                            {{ \Carbon\Carbon::parse($review->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                        </div>
+        
+                        {{-- kerjaan front end nampilin ratingny --}}
+                        <div class="form-group row">
+                            Rating: {{ $review->rating }}
+                        </div>
+        
+                        <div class="col-12">
+                            {{ $review->rev_sc }}
+                        </div>
 
-                              @if($review->user_id == auth()->user()->id)
-                              <a data-bs-toggle="collapse" href="#edit{{$loop->index}}" aria-expanded="false" aria-controls="edit{{$loop->index}}">Edit</a>
-                              <form class="collapse multi-collapse" action="{{ route('scupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
-                                  @method('put')
-                                  @csrf
-              
-                                  @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
-                                  
-                                  <input type="hidden" name="rev_id" value="{{ $review->id }}">
-                                  <div class="col-12">
-                                      <textarea class="col-8 d-flex" rows="5" name="rev_sc" id="rev_sc" wrap="hard" required>{{ $review->rev_sc }}</textarea>
-                                  </div>
-                                  <button type="submit" class="btn btn-primary" name="action" value="cancel">cancel</button>
-                                  <button type="submit" class="btn btn-primary" name="action" value="save">save</button>
-                              </form>
-                              <form action="{{ route('scdelete.add') }}" method="POST">
-                                  @method('delete')
-                                  @csrf
-                                  <input type="hidden" name="rev_id" value="{{ $review->id }}">
-                                  <button type="submit" class="btn btn-primary" name="action" value="delete">delete</button>
-                              </form>
-                              @endif
-
-                              @include('partials.comment', ['review' => $review, 'type' => 'sc'])
+                        @if($review->user_id == auth()->user()->id)
+                        <div class="dropdown">
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" data-bs-toggle="collapse" href="#edit{{$loop->index}}"
+                              ><i class="bx bx-edit-alt me-2"></i> Edit</a
+                            >
+                            <a class="dropdown-item" href="#" onclick="deleteReview({{ $loop->index }})"
+                              ><i class="bx bx-trash me-2"></i> Delete</a
+                            >
                           </div>
-
-                      </div>
-                      @endforeach
-
+                        </div>
+                        
+                        <form class="collapse multi-collapse" action="{{ route('scupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
+                            @method('put')
+                            @csrf
+        
+                            @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
+                            
+                            <input type="hidden" name="rev_id" value="{{ $review->id }}">
+                            <div class="col-12">
+                                <textarea class="col-8 d-flex" rows="5" name="rev_sc" id="rev_sc" wrap="hard" required>{{ $review->rev_sc }}</textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary" name="action" onclick="cancelForm({{ $loop->index }})">cancel</button>
+                            <button type="submit" class="btn btn-primary" name="action" value="save">save</button>
+                        </form>
+                        <form action="{{ route('scdelete.add') }}" method="POST" id="del{{ $loop->index }}">
+                            @method('delete')
+                            @csrf
+                            <input type="hidden" name="rev_id" value="{{ $review->id }}">
+                        </form>
+                        @endif
+                        @include('partials.comment', ['review' => $review, 'type' => 'sc'])
+                    </div>
+                    <br><br>
+                    
+                    @endforeach
           </div>
         </div>
+
+        <script>
+          function deleteReview(formIndex) {
+              event.preventDefault();
+
+              var form = document.getElementById('del' + formIndex);
+              form.submit();
+          }
+          function cancelForm(formIndex) {
+            var form = document.getElementById('edit' + formIndex);
+            form.classList.remove('show');
+          }
+
+        </script>
                 <!-- / Content -->
         
                   <!--/ Accordion -->

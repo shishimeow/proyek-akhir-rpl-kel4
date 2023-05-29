@@ -53,12 +53,13 @@ class CommentController extends Controller
                 
                 $tipe = $request->type;
                 if($tipe == 'sc'){
-                    $review = ReviewSc::find($request->rev_id);
+                    $review = Comment::find($request->comment_id);
+
                 }
                 else{
-                    $review = ReviewMbkm::find($request->rev_id);
+                    $review = Comment::find($request->comment_id);
                 }
-                $review->comments()->save($reply); 
+                $review->replies()->save($reply); 
 
                 $counter = Comment::where('parent_id', $request->comment_id)->count();
                 return back();

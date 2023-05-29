@@ -26,7 +26,7 @@
           <p class="text-sm mb-25">
             Create your account
           </p>
-          <form action="/signup" methode="POST">
+          <form action="{{ route('signup.add') }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-12">
@@ -60,7 +60,7 @@
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Confirm Password</label>
-                  <input type="password" placeholder="Confirm Password" name="passowrd_confirmation" class="form-control @error('password') is-invalid @enderror" required/>
+                  <input type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" required/>
                 </div>
               </div>
 
@@ -84,6 +84,7 @@
                       w-100
                       text-center
                     "
+                    type="submit"
                   >
                     Sign Up
                   </button>
@@ -91,7 +92,7 @@
               </div>
             </div>
             <!-- end row -->
-          
+          </form>
 
             <p class="text-sm text-medium text-dark text-center">
               Already have an account? <a href="/login">Login</a>

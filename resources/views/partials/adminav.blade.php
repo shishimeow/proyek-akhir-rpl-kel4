@@ -36,7 +36,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="/admin/faculty" class="menu-link">
+                <a href="{{ route('faculty.index') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-collection"></i>
                   <div data-i18n="Basic">Fakultas</div>
                 </a>

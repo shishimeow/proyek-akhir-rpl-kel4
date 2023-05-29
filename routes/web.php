@@ -35,7 +35,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']); //ganti post nanti
 
 Route::get('/signup', [SignUpController::class, 'index'])->middleware('guest');
-Route::post('/signup', [SignUpController::class, 'store']);
+Route::post('/signup', [SignUpController::class, 'store'])->name('signup.add');
 
 Route::prefix('sc')->middleware(['auth'])->group(function(){
     Route::match(['get', 'post'], '/', [ScController::class, 'index']);
