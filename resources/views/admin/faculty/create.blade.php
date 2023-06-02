@@ -1,40 +1,88 @@
 @extends('layouts.adminmain')
 
 @section('container')
-    <h1>{{ $title }}</h1>
-    <div class="main">
-        <form action="/admin/faculty" method="POST" class="row justify-content-center g-3">
-            @csrf
-            <div class="col-12">
-                <label for="faculty_name" class="form-label">Nama Fakultas</label>
-                <input type="text" name="faculty_name" class="form-control @error('faculty_name') is-invalid @enderror" id="faculty_name" value="{{ old('faculty_name') }}" required>
-                @error('faculty_name')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
 
-            <div class="col-12">
-                <label for="slug" class="form-label">Link Fakultas</label>
-                <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" required>
-                @error('slug')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
 
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Tambah</button>
-            </div>
-        </form>
-    </div>
+        @include('partials.adminav')
 
-    <script>
-        const title = document.querySelector('#faculty_name');
-        const slug = document.querySelector('#slug');
+        <!-- Layout container -->
+        <div class="layout-page">
 
-        title.addEventListener('change', function(){
-            fetch('/admin/sc/checkSlug?title=' + title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-    </script>
+          @include('partials.search')
+
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">MENU TAMBAH /</span> FAKULTAS </h4>
+
+              <!-- Basic Layout & Basic with Icons -->
+              <div class="row">
+                <!-- Basic Layout -->
+                <div class="col-xxl">
+                  <div class="card mb-4">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h5 class="mb-0">TAMBAH FAKULTAS</h5>
+                    </div>
+                    <div class="card-body">
+                      <form action="{{ route('faculty.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="faculty_name">NAMA FAKULTAS</label>
+                          <div class="col-sm-10">
+                            <input type="text"
+                            class="form-control 
+                            @error('faculty_name') is-invalid @enderror" 
+                            id="faculty_name" 
+                            name="faculty_name" 
+                            value="{{ old('faculty_name') }}" 
+                            required
+                            />
+                            @error('faculty_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                          </div>
+                        </div>
+
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="slug">LINK COURSE</label>
+                          <div class="col-sm-10">
+                            <input type="text"
+                            class="form-control 
+                            @error('slug') is-invalid @enderror" 
+                            name="slug"
+                            id="slug"
+                            value="{{ old('slug') }}"
+                            required
+                            />
+                            @error('slug')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                          </div>
+                        </div>
+
+                        <div class="row justify-content-end">
+                          <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <script>
+                    const title = document.querySelector('#faculty_name');
+                    const slug = document.querySelector('#slug');
+            
+                    title.addEventListener('change', function(){
+                        fetch('/admin/sc/checkSlug?title=' + title.value)
+                            .then(response => response.json())
+                            .then(data => slug.value = data.slug)
+                    });
+                </script>
+                @include('layouts.preview')
 @endsection

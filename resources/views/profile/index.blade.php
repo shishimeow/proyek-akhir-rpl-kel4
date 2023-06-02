@@ -34,6 +34,7 @@
                     <div class="card-body">
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
                         @if(auth()->user()->image)
+                        <input type="hidden" name="oldImage" value="{{ auth()->user()->image }}">
                         <img src="{{ asset('storage/'. auth()->user()->image) }}" alt="user-avatar"
                             class="d-block rounded"
                             height="100"

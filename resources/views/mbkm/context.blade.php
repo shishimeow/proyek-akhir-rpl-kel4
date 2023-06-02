@@ -1,117 +1,263 @@
-@extends('layouts.main')
+@extends('layouts.scmbkm')
 
-@section ('container')
-    @if(session()->has('success'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
+@section('container')
 
-    @if(session()->has('delete'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ session('delete') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
 
-    @include('partials.notif')
+     <!-- Layout wrapper -->
+     <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            
+         @include('partials.navbar')
+  
+          <!-- Layout container -->
+          <div class="layout-page">
+
+            <form action="{{ route('searchm.add') }}" id="searchFrom">
+                @include('partials.search')
+            </form>
+
+
+            <div class="content-wrapper">
+                <!-- Content -->
     
-    <h1> {{ $title }}</h1>
-    <br><br>
-    <h4>Periode pendaftaran:</h4>
-    {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }} - {{ \Carbon\Carbon::parse($mbkm->periode_end)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
-    <br><br>
-    <h3>Benefit</h3>
-        @foreach(explode('.',$mbkm->benefit) as $row)
-        <li>{{ $row }}</li>
-        @endforeach
-    <br><br>
-    <h3>Position</h3>
-        @foreach(explode(',',$mbkm->positions) as $row)
-        <li>{{ $row }}</li>
-        @endforeach
-    <br><br>
-    <h3>Requirements</h3>
-        @foreach(explode('.',$mbkm->requirements) as $row)
-        <li>{{ $row }}</li>
-        @endforeach
-    <br><br>
-
-    <h3>Rating</h3>
-    <div>
-        <p>Rating: {{ $mbkm->rating }}</p>
-        <p>Banyak review: {{ $reviews->count() }} review</p>
-        @for($i=0; $i<5; $i++)
-            @if($reviews->count() == 0)
-                <p>Banyak yang rating {{ $i + 1 }}: {{ $reviews->where('rating', $i + 1)->count() / 1 * 100}}%</p>
-            @else
-                <p>Banyak yang rating {{ $i + 1 }}: {{ $reviews->where('rating', $i + 1)->count() / $reviews->count() * 100}}%</p>
-            @endif
-        @endfor
-    </div>
-    <br><br>
-
-    <h3>Tambah Review</h3>
-    {{ auth()->user()->username }}
-    <form action="/mbkm/{{ $mbkm->slug }}" method="POST">
-        @csrf
-
-        @include('partials.rating', ['course' => $mbkm])
-
-        <input type="hidden" name="mbkm_id" value="{{ $mbkm->id }}">
-        <div class="col-12">
-            <textarea class="col-8 d-flex" rows="5" name="rev_mbkm" id="rev_mbkm" wrap="hard" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" name="action" value="cancel">cancel</button>
-        <button type="submit" class="btn btn-primary" name="action" value="add">add</button>
-    </form>
-
-    <h3>Learner Review</h3>
-
-    @foreach ($reviews as $review)
-    <div class="card card-body col-12">
-    <div class="col-12">
-        <strong>{{ $review->users->username }}</strong>
-        {{ \Carbon\Carbon::parse($review->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
-    </div>
-
-    <div class="form-group row">
-        Rating: {{ $review->rating }}
-    </div>
-
-    <div class="col-12">
-        {{ $review->rev_mbkm }}
-    </div>
-
-    @include('partials.comment', ['review' => $review, 'type' => 'mbkm'])
-
-    @if($review->user_id == auth()->user()->id)
-    <a data-bs-toggle="collapse" href="#edit{{$loop->index}}" aria-expanded="false" aria-controls="edit{{$loop->index}}">Edit</a>
-    <form class="collapse multi-collapse" action="{{ route('mupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
-        @method('put')
-        @csrf
-
-        @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
-
-        <input type="hidden" name="rev_id" value="{{ $review->id }}">
-        <div class="col-12">
-            <textarea class="col-8 d-flex" rows="5" name="rev_mbkm" id="rev_mbkm" wrap="hard" required>{{ $review->rev_mbkm }}</textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" name="action" value="cancel">cancel</button>
-        <button type="submit" class="btn btn-primary" name="action" value="save">save</button>
-    </form>
-
-    <form action="{{ route('mdelete.add') }}" method="POST">
-        @method('delete')
-        @csrf
-        <input type="hidden" name="rev_id" value="{{ $review->id }}">
-        <button type="submit" class="btn btn-primary" name="action" value="delete">delete</button>
-    </form>
-    @endif
-</div>
-<br><br>
-@endforeach
-
+                <div class="container-xxl flex-grow-1 container-p-y">
+                  <h4 class="fw-bold py-3 mb-4"></span> {{ $title }}</h4>
+                  
+                  <div class="row">
+                    
+                      
+                      <div class="accordion mt-3" id="accordionExample">
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header" id="headingZero">
+                            <button
+                              type="button"
+                              class="accordion-button collapsed"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionZero"
+                              aria-expanded="false"
+                              aria-controls="accordionZero"
+                            >
+                              Periode Pendaftaran
+                            </button>
+                          </h2>
+                          <div
+                            id="accordionZero"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="headingZero"
+                            data-bs-parent="#accordionExample"
+                          >
+                            <div class="accordion-body">
+                              {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }} - {{ \Carbon\Carbon::parse($mbkm->periode_end)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button
+                              type="button"
+                              class="accordion-button collapsed"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionOne"
+                              aria-expanded="false"
+                              aria-controls="accordionOne"
+                            >
+                            Benefit
+                            </button>
+                          </h2>
     
+                          <div
+                            id="accordionOne"
+                            class="accordion-collapse collapse"
+                            data-bs-parent="#accordionExample"
+                          >
+                          <div class="accordion-body">
+                            @foreach(explode('.',$mbkm->benefit) as $row)
+                            <li>{{ $row }}</li>
+                            @endforeach
+                        </div>
+                        
+                          </div>
+                        </div>
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button
+                              type="button"
+                              class="accordion-button collapsed"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionTwo"
+                              aria-expanded="false"
+                              aria-controls="accordionTwo"
+                            >
+                              Position
+                            </button>
+                          </h2>
+                          <div
+                            id="accordionTwo"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample"
+                          >
+                            <div class="accordion-body">
+                                @foreach(explode(',',$mbkm->positions) as $row)
+                                <li>{{ $row }}</li>
+                                @endforeach
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header" id="headingThree">
+                            <button
+                              type="button"
+                              class="accordion-button collapsed"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionThree"
+                              aria-expanded="false"
+                              aria-controls="accordionThree"
+                            >
+                            Requirements
+                            </button>
+                          </h2>
+                          <div
+                            id="accordionThree"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="headingThree"
+                            data-bs-parent="#accordionExample"
+                          >
+                            <div class="accordion-body">
+                                @foreach(explode('.',$mbkm->requirements) as $row)
+                                <li>{{ $row }}</li>
+                                @endforeach
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+    
+                    <!-- Basic Layout -->
+                  
+                    <div class="col-xl">
+                        <div class="card mb-4">
+                          <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Tambah Review</h5>
+                            
+                          </div>
+                          <div class="card-body">
+                            {{ auth()->user()->username }}
+                            <form action="{{ route('storerevm.add', $mbkm->slug) }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="mbkm_id" value="{{ $mbkm->id }}">
+                              <div class="mb-3">
+                                
+                                @include('partials.rating', ['course' => $mbkm])
+  
+                              </div>
+                              <div class="mb-3">
+                                
+                                <textarea
+                                  id="basic-default-message"
+                                  class="form-control"
+                                  name="rev_mbkm"
+                                  
+                                  
+                                ></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-primary" name="action" value="add">Submit</button>
+                          </div>
+                        </form>
+                        </div>
+                      </div>
+                      <!-- Content wrapper -->
+                      @foreach ($reviews->sortByDesc('created_at') as $review)
+                      <div class="card card-body col-12">
+                          <div class="col-12">
+                              <strong>{{ $review->users->username }}</strong>
+                              {{ \Carbon\Carbon::parse($review->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                          </div>
+          
+                          {{-- kerjaan front end nampilin ratingny --}}
+                          <div class="form-group row">
+                            @include('partials.reviewrate', ['course' => $review->rating])
+                          </div>
+          
+                          <div class="col-12">
+                              {{ $review->rev_mbkm }}
+                          </div>
+  
+                          @if($review->user_id == auth()->user()->id)
+                          <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                              <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" data-bs-toggle="collapse" href="#edit{{$loop->index}}"
+                                ><i class="bx bx-edit-alt me-2"></i> Edit</a
+                              >
+                              <a class="dropdown-item" href="#" onclick="deleteReview({{ $loop->index }})"
+                                ><i class="bx bx-trash me-2"></i> Delete</a
+                              >
+                            </div>
+                          </div>
+                          
+                          <form class="collapse multi-collapse" action="{{ route('mupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
+                              @method('put')
+                              @csrf
+          
+                              @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
+                              
+                              <input type="hidden" name="rev_id" value="{{ $review->id }}">
+                              <div class="col-12">
+                                  <textarea class="col-8 d-flex" rows="5" name="rev_sc" id="rev_sc" wrap="hard" required>{{ $review->rev_sc }}</textarea>
+                              </div>
+                              <button type="button" class="btn btn-primary" name="action" onclick="cancelForm({{ $loop->index }})">cancel</button>
+                              <button type="submit" class="btn btn-primary" name="action" value="save">save</button>
+                          </form>
+                          <form action="{{ route('mdelete.add') }}" method="POST" id="del{{ $loop->index }}">
+                              @method('delete')
+                              @csrf
+                              <input type="hidden" name="rev_id" value="{{ $review->id }}">
+                          </form>
+                          @endif
+                          @include('partials.comment', ['review' => $review, 'type' => 'mbkm'])
+                      </div>
+                      <br><br>
+                      
+                      @endforeach
+            </div>
+          </div>
+  
+          <script>
+            function deleteReview(formIndex) {
+                event.preventDefault();
+  
+                var form = document.getElementById('del' + formIndex);
+                form.submit();
+            }
+            function cancelForm(formIndex) {
+              var form = document.getElementById('edit' + formIndex);
+              form.classList.remove('show');
+            }
+  
+          </script>
+                  <!-- / Content -->
+        
+                  <!--/ Accordion -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('vendor/assets/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('vendor/assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    
+    <script src="{{ asset('vendor/assets/js/menu.js') }}"></script>
+    <!-- endbuild -->
+    
+    <!-- Vendors JS -->
+    
+    <!-- Main JS -->
+    <script src="{{ asset('js/assets/main.js') }}"></script>
+    
+    <!-- Page JS -->
+    
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 @endsection

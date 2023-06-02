@@ -31,7 +31,7 @@
                 <p>{{ $comment->comment }}</p>
               </div>
               
-              @if($review->user_id == auth()->user()->id)
+              @if($comment->user_id == auth()->user()->id)
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                   <i class="bx bx-dots-vertical-rounded"></i>
@@ -78,7 +78,7 @@
                   <button type="submit" class="btn btn-primary" name="action" value="reply">reply</button>
               </form>
 
-              <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$loop->index}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$loop->index}}">
+              <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$comment->id}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$comment->id}}">
                 @if( $comment->where('parent_id', $comment->id)->count() > 0)
                 {{ $comment->where('parent_id', $comment->id)->count() }} Reply
                 @else Reply

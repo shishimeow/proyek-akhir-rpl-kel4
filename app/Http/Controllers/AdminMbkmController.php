@@ -54,6 +54,8 @@ class AdminMbkmController extends Controller
         $validatedData = $request->validate($rules);
         $validatedData['excerpt'] = Str::words($request->positions, 6);
 
+        $validatedData['rating'] = 0.0;
+
         mbkm::create($validatedData);
         
         return redirect('/admin/mbkm');

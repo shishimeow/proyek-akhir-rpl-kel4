@@ -1,4 +1,4 @@
-  <div class="collapse multi-collapse" id="replyCollapse{{$loop->index}}">
+  <div class="collapse multi-collapse" id="replyCollapse{{$comment->id}}">
     @foreach($comments as $comment)
     <div class="display-comment">
         <div class="card card-body">
@@ -7,10 +7,26 @@
     
             <p>{{ $comment->comment }}</p>
     
-            <a data-bs-toggle="collapse" href="#replyReply{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="replyReply{{$comment->id}}">Reply</a>
-    
             @if($comment->user_id == auth()->user()->id)
-            <a data-bs-toggle="collapse" href="#editreply{{ $comment->id }}" aria-expanded="false" aria-controls="editreply{{$comment->id}}">Edit</a>
+            <div class="dropdown">
+              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" data-bs-toggle="collapse" href="#replyReply{{ $comment->id }}"
+                  ><i class="bx bx-edit-alt me-2"></i> Edit</a
+                >
+                <a class="dropdown-item" href="#" onclick="deleteReply({{ $comment->id }})"
+                  ><i class="bx bx-trash me-2"></i> Delete</a
+                >
+              </div>
+            </div>
+            @endif
+
+
+            <a data-bs-toggle="collapse" href="#replyReply{{ $comment->id }}" role="button" aria-expanded="false" aria-controls="replyReply{{$comment->id}}">Reply</a>
+
+            @if($comment->user_id == auth()->user()->id)
             <form class="collapse multi-collapse" action="{{ route('update.add') }}" method="POST" id="editreply{{ $loop->index }}-{{ $comment->id }}">
                 @method('put')
                 @csrf
@@ -22,11 +38,10 @@
                 <button type="button" class="btn btn-primary" name="action" onclick="cancelEditReply({{ $comment->id }})">cancel</button>
                 <button type="submit" class="btn btn-primary" name="action" value="save">save</button>
             </form>
-            <form action="{{ route('delete.add') }}" method="POST">
+            <form action="{{ route('delete.add') }}" method="POST" id="delReply{{ $comment->id }}">
                 @method('delete')
                 @csrf
                 <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                <button type="submit" class="btn btn-primary" name="action" value="delete">delete</button>
             </form>
             @endif
     
@@ -48,7 +63,7 @@
                 <br>
             </div>
     
-            <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$loop->index}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$loop->index}}">
+            <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$comment->id}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$comment->id}}">
                 @if( $comment->where('parent_id', $comment->id)->count() > 0)
                 {{ $comment->where('parent_id', $comment->id)->count() }} Reply
                 @else Reply
@@ -75,5 +90,12 @@
         function cancelReplyReply(formIndex) {
             var form = document.getElementById('replyReply' + formIndex);
             form.classList.remove('show');
+        }
+
+        function deleteReply(formIndex) {
+            event.preventDefault();
+
+            var form = document.getElementById('delReply' + formIndex);
+            form.submit();
         }
   </script>

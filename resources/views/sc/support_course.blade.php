@@ -25,14 +25,14 @@
                     
                       
                       <div class="accordion mt-3" id="accordionExample">
-                        <div class="card accordion-item active">
+                        <div class="card accordion-item">
                           <h2 class="accordion-header" id="headingOne">
                             <button
                               type="button"
-                              class="accordion-button"
+                              class="accordion-button collapsed"
                               data-bs-toggle="collapse"
                               data-bs-target="#accordionOne"
-                              aria-expanded="true"
+                              aria-expanded="false"
                               aria-controls="accordionOne"
                             >
                             SKS
@@ -41,7 +41,7 @@
     
                           <div
                             id="accordionOne"
-                            class="accordion-collapse collapse show"
+                            class="accordion-collapse collapse"
                             data-bs-parent="#accordionExample"
                           >
                           <div class="accordion-body">
@@ -88,14 +88,16 @@
                           
                         </div>
                         <div class="card-body">
-                          {{ auth()->user()->username }}
                           <form action="{{ route('storerev.add', $support_course->slug) }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="courses_id" value="{{ $support_course->id }}">
-                            <div class="mb-3">
-                              
-                              @include('partials.rating', ['course' => $support_course])
+                            <div class="rating-box">
+                              @csrf
+                              <input type="hidden" name="courses_id" value="{{ $support_course->id }}">
 
+                              @include('partials.rating', ['course' => $support_course])
+                            
+                            <div class="mb-3"></div>
+                              
+                              
                             </div>
                             <div class="mb-3">
                               
@@ -104,13 +106,11 @@
                                 class="form-control"
                                 name="rev_sc"
                                 
-                                
                               ></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary" name="action" value="add">Submit</button>
+                          </form>
                         </div>
-                      </form>
-                      </div>
                     </div>
                     <!-- Content wrapper -->
                     @foreach ($reviews->sortByDesc('created_at') as $review)
@@ -122,7 +122,7 @@
         
                         {{-- kerjaan front end nampilin ratingny --}}
                         <div class="form-group row">
-                            Rating: {{ $review->rating }}
+                            @include('partials.reviewrate', ['course' => $review->rating])
                         </div>
         
                         <div class="col-12">

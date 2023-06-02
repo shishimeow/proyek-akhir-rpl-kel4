@@ -19,7 +19,7 @@
            <div class="content-wrapper">
             <!-- Content -->
             <div class="demo-inline-spacing custom-container">
-              <button type="button" class="btn btn-primary">Tambah MBKM</button>
+              <a href="{{ route('mbkm.create') }}" class="btn btn-primary">Tambah MBKM</a>
             </div>
 
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -49,14 +49,14 @@
                             <td>
                               <form id="edit-form" action= "{{ route('mbkm.edit', $list->slug)  }}">
                               <div class="demo-inline-spacing custom-edit">
-                                <button type="button" class="btn btn-primary">Add</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                               </div>
                               </form>
                               <form id="delete-form" action="{{ route('mbkm.destroy', $list->slug)  }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <div class="demo-inline-spacing custom-edit">
-                                  <button type="button" class="btn btn-primary">Delete</button>
+                                  <button type="submit" class="btn btn-primary">Delete</button>
                                 </div>
                               </form>
                             </td>

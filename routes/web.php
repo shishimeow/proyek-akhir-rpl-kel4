@@ -59,7 +59,7 @@ Route::prefix('mbkm')->middleware(['auth'])->group(function(){
     Route::get('/{course:slug}', [MbkmController::class, 'show']);
     Route::get('/', [MbkmController::class, 'search'])->name('searchm.add');
     Route::post('/', [MbkmController::class, 'filter'])->name('filterm.add');
-    Route::post('/{course:slug}', [MbkmController::class, 'store']);
+    Route::post('/{course:slug}', [MbkmController::class, 'store'])->name('storerevm.add');
     Route::put('/update', [MbkmController::class, 'update'])->name('mupdate.add');
     Route::delete('/delete', [MbkmController::class, 'destroy'])->name('mdelete.add');
 });

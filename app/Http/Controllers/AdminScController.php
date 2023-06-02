@@ -46,6 +46,8 @@ class AdminScController extends Controller
             $validate['picture'] = $request->file('image')->store('post-images');
         }
 
+        $validate['rating'] = 0.0;
+
         SupportCourse::create($validate);
         
         return redirect('/admin/sc');

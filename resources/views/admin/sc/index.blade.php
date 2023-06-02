@@ -19,7 +19,7 @@
            <div class="content-wrapper">
             <!-- Content -->
             <div class="demo-inline-spacing custom-container">
-              <button type="button" class="btn btn-primary">Tambah SC</button>
+              <a href="{{ route('sc.create') }}" class="btn btn-primary">Tambah SC</a>
             </div>
 
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -47,14 +47,14 @@
                             <td>
                               <form id="edit-form" action= "{{ route('sc.edit', $list->slug)  }}">
                               <div class="demo-inline-spacing custom-edit">
-                                <button type="button" class="btn btn-primary">Add</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                               </div>
                               </form>
                               <form id="delete-form" action="{{ route('sc.destroy', $list->slug)  }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <div class="demo-inline-spacing custom-edit">
-                                  <button type="button" class="btn btn-primary">Delete</button>
+                                  <button type="submit" class="btn btn-primary">Delete</button>
                                 </div>
                               </form>
                             </td>

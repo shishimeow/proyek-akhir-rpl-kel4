@@ -85,20 +85,27 @@
                                 </tr>
                                 @foreach($reviewmbkms as $reviewmbkm)
                                 <tr>
-                                    <td>{{ $reviewmbkm->mbkm->courses_name }}</td>
+                                    <td>{{ $reviewmbkm->mbkm->mbkm_name }}</td>
                                     <td>{{ $reviewmbkm->users->username }}</td>
                                     <td>{{ $reviewmbkm->rev_mbkm }}</td>
                                 <td>
                                         
-                                <div class="demo-inline-spacing custom-edit">
-                                    <button type="button" class="btn btn-primary">Delete</button>
-                                </div>
+                                <form id="delete-form" action="{{ route('mdelete.add')  }}" method="POST">
+                                  @csrf
+                                  @method('delete')
+                                  <div class="demo-inline-spacing custom-edit">
+                                    <input type="hidden" name="rev_id" value="{{ $reviewmbkm->id }}">
+                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                  </div>
+                                </form>
                                 </td>
                                 </tr>
                                 @endforeach
                               </table>
                         </div>
                       </div>
+
+                      
                       <!--/ Basic Bootstrap Table -->
 {{-- 
 
@@ -132,6 +139,29 @@
                         </div>
                       </div>
                       <!--/ Basic Bootstrap Table --> --}}
+
+
+                          <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('vendor/assets/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('vendor/assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('vendor/assets/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+
+    <script src="{{ asset('vendor/assets/js/menu.js') }}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="{{ asset('vendor/assets/libs/apex-charts/apexcharts.js') }}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('js/assets/main.js') }}"></script>
+
+    <!-- Page JS -->
+    <script src="{{ asset('js/assets/dashboards-analytics.js') }}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     
 @endsection
 
