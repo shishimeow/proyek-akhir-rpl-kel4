@@ -116,11 +116,12 @@
               </div>
               @endforeach --}}
 
-              <div class="container">
-                <div class="row">
+              <div>
+              <div class="row row-cols-2 row-cols-md-3 g-4 ">
                     @foreach($support_courses as $support_course)
-                    <div class="col-md-4">
-                    <div class="card">
+                    
+                    <div class="col">
+                    <div class="card h-100">
                     <img src='{{ asset("img/assets/elements/1.png") }}' class="card-img-top" alt="Course">
                     <div class="card-body">
                         <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
@@ -134,7 +135,7 @@
             </div>
             </div>
   
-            
+
               <div class="content-backdrop fade"></div>
             </div>
             <!-- Content wrapper -->
