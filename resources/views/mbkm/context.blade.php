@@ -216,7 +216,7 @@
 
 
 
-                          <form class="collapse multi-collapse" action="{{ route('mupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
+                          <form class="collapse multi-collapse " style="padding-left: 30px;" action="{{ route('mupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
                               @method('put')
                               @csrf
           
