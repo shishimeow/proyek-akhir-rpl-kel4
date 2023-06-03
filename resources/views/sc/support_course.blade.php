@@ -143,11 +143,7 @@
                             <div class="form-group row pt-1 pb-3">
                               @include('partials.reviewrate', ['course' => $review->rating])
                             
-                            </div>
-                            
-                          
-          
-                          
+                            </div>                         
   
                             @if($review->user_id == auth()->user()->id)                                                                                                          
                             <div class="col-12 fs-5 pb-3">
