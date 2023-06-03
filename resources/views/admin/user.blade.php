@@ -63,12 +63,14 @@
                               <form id="delete-form" action="{{ route('user.destroy', $list->id)  }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <div class="demo-inline-spacing custom-edit">
-                                  <button type="button" class="btn btn-primary">Delete</button>
-                                </div>
+                                <button class="dropdown-item" type="submit">
+                                  <i class="bx bx-trash me-1"></i>Delete
+                                </button>
                               </form>
                             </td>
                         </tr>
+                        
+
                         @endforeach
 
                       </table>
