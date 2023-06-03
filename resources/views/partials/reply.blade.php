@@ -5,10 +5,11 @@
             <strong>{{ $comment->user->username }}</strong>
             {{ \Carbon\Carbon::parse($comment->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
     
-            <p>{{ $comment->comment }}</p>
+            
     
             @if($comment->user_id == auth()->user()->id)
-            <div class="dropdown">
+            <div class="col">
+              <div class="d-flex justify-content-end">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                 <i class="bx bx-dots-vertical-rounded"></i>
               </button>
@@ -21,6 +22,9 @@
                 >
               </div>
             </div>
+            <div class="col-12 fs-5 pb-3">
+                              <p>{{ $comment->comment }}</p>
+                            </div>
             @endif
 
 
@@ -33,11 +37,13 @@
                 <input type="hidden" name="comment_id" value="{{ $comment->id }}">
                 <input type="hidden" name="type" value="{{ $comment->type }}">
                 <div class="col-12">
-                    <textarea class="col-8 d-flex" rows="5" name="comment" id="comment" wrap="hard" required>{{ $comment->comment }}</textarea>
+                    <textarea class="col-8 d-flex form-control" rows="5" name="comment" id="comment" wrap="hard" required>{{ $comment->comment }}</textarea>
                 </div>
-                <button type="button" class="btn btn-primary" name="action" onclick="cancelEditReply({{ $comment->id }})">cancel</button>
-                <button type="submit" class="btn btn-primary" name="action" value="save">save</button>
-            </form>
+                <div class="pb-3 pt-3">
+                <button type="button" class="btn btn-primary" name="action" onclick="cancelEditReply({{ $comment->id }})">Cancel</button>
+                <button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+                </div>
+              </form>
             <form action="{{ route('delete.add') }}" method="POST" id="delReply{{ $comment->id }}">
                 @method('delete')
                 @csrf
@@ -54,19 +60,21 @@
                         <input type="hidden" name="comment_id" value="{{ $comment->id }}">
                         <input type="hidden" name="type" value="{{ $comment->type }}">
                         <div class="col-12">
-                            <textarea class="col-8 d-flex" rows="5" name="comment" id="comment" wrap="hard"></textarea>
+                            <textarea class="col-8 d-flex form-control" rows="5" name="comment" id="comment" wrap="hard"></textarea>
                         </div>
-                        <button type="button" class="btn btn-primary" name="action" onclick="cancelReplyReply({{ $comment->id }})">cancel</button>
-                        <button type="submit" class="btn btn-primary" name="action" value="reply">reply</button>
-                    </form>
+                        <div class="pb-3 pt-3">
+                        <button type="button" class="btn btn-primary" name="action" onclick="cancelReplyReply({{ $comment->id }})">Cancel</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="reply">Reply</button>
+                        </div>
+                      </form>
                 </div>
                 <br>
             </div>
     
             <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$comment->id}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$comment->id}}">
                 @if( $comment->where('parent_id', $comment->id)->count() > 0)
-                {{ $comment->where('parent_id', $comment->id)->count() }} Reply
-                @else Reply
+                {{ $comment->where('parent_id', $comment->id)->count() }} Replies
+                @else Replies
                 @endif
             </a>
 
