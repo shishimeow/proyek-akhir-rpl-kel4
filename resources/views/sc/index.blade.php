@@ -125,7 +125,11 @@
                     <img src='{{ asset("img/assets/elements/1.png") }}' class="card-img-top" alt="Course">
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 15px;">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                        <p class="card-text" style="font-size: 14px;">Rating: {{ $support_course->rating }}</p>
+                        
+                        <div>
+                        @include('partials.reviewrate', ['course' => $support_course->rating])
+
+                        </div>
                         <a href="/sc/{{ $support_course->slug }}"  class="pb-1" style="font-size: 15px;">View more</a>
                     </div>
                     </div>
