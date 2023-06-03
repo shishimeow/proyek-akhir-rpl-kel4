@@ -4,10 +4,10 @@
           <!-- Menu -->
   
           <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-            <div class="app-brand demo">
+            <div class="app-brand demo d-flex" style="padding-left: 10px;">
               <div class="img-container">
-              <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="40%">
-                <span class="app-brand-text demo fw-bolder ms-0" style="text-transform: capitalize; font-size: 22px ">I-Course Center</span>
+              <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="30%">
+                <span class="app-brand-text demo fw-bolder ms-0" style="text-transform: capitalize; font-size: 20px; padding-top: 12px; padding-left: 5px;">I-CourseCenter</span>
 
               </div>  
                 
