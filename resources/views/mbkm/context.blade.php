@@ -33,42 +33,41 @@
                               type="button"
                               class="accordion-button collapsed"
                               data-bs-toggle="collapse"
-                              data-bs-target="#accordionZero"
-                              aria-expanded="false"
-                              aria-controls="accordionZero"
+                              data-bs-target="#panelsStayOpen-collapseOne"
+                              aria-expanded="true"
+                              aria-controls="panelsStayOpen-collapseOne"
                             >
                               Periode Pendaftaran
                             </button>
                           </h2>
                           <div
-                            id="accordionZero"
-                            class="accordion-collapse collapse"
-                            aria-labelledby="headingZero"
-                            data-bs-parent="#accordionExample"
-                          >
+                            id="panelsStayOpen-collapseOne"
+                            class="accordion-collapse collapse show"
+
+                            >
                             <div class="accordion-body">
                               {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }} - {{ \Carbon\Carbon::parse($mbkm->periode_end)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                             </div>
                           </div>
                         </div>
                         <div class="card accordion-item">
-                          <h2 class="accordion-header" id="headingOne">
+                          <h2 class="accordion-header" id="headingTwo">
                             <button
                               type="button"
                               class="accordion-button collapsed"
                               data-bs-toggle="collapse"
-                              data-bs-target="#accordionOne"
+                              data-bs-target="#panelsStayOpen-collapseTwo"
                               aria-expanded="false"
-                              aria-controls="accordionOne"
+                              aria-controls="panelsStayOpen-collapseTwo"
                             >
                             Benefit
                             </button>
                           </h2>
     
                           <div
-                            id="accordionOne"
+                            id="panelsStayOpen-collapseTwo"
                             class="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample"
+                            aria-labelledby="headingTwo"
                           >
                           <div class="accordion-body">
                             @foreach(explode('.',$mbkm->benefit) as $row)
@@ -79,23 +78,23 @@
                           </div>
                         </div>
                         <div class="card accordion-item">
-                          <h2 class="accordion-header" id="headingTwo">
+                          <h2 class="accordion-header" id="headingThree">
                             <button
                               type="button"
                               class="accordion-button collapsed"
                               data-bs-toggle="collapse"
-                              data-bs-target="#accordionTwo"
+                              data-bs-target="#panelsStayOpen-collapseThree"
                               aria-expanded="false"
-                              aria-controls="accordionTwo"
+                              aria-controls="panelsStayOpen-collapseThree"
                             >
                               Position
                             </button>
                           </h2>
                           <div
-                            id="accordionTwo"
+                            id="panelsStayOpen-collapseThree"
                             class="accordion-collapse collapse"
-                            aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample"
+                            aria-labelledby="headingThree"
+                            
                           >
                             <div class="accordion-body">
                                 @foreach(explode(',',$mbkm->positions) as $row)
@@ -105,23 +104,22 @@
                           </div>
                         </div>
                         <div class="card accordion-item">
-                          <h2 class="accordion-header" id="headingThree">
+                          <h2 class="accordion-header" id="headingFour">
                             <button
                               type="button"
                               class="accordion-button collapsed"
                               data-bs-toggle="collapse"
-                              data-bs-target="#accordionThree"
+                              data-bs-target="#panelsStayOpen-collapseFour"
                               aria-expanded="false"
-                              aria-controls="accordionThree"
+                              aria-controls="panelsStayOpen-collapseFour"
                             >
                             Requirements
                             </button>
                           </h2>
                           <div
-                            id="accordionThree"
+                            id="panelsStayOpen-collapseFour"
                             class="accordion-collapse collapse"
-                            aria-labelledby="headingThree"
-                            data-bs-parent="#accordionExample"
+                            
                           >
                             <div class="accordion-body">
                                 @foreach(explode('.',$mbkm->requirements) as $row)
