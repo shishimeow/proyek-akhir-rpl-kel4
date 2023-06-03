@@ -91,6 +91,7 @@
                               Periode pendaftaran: {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
                               </p>
                               <p class="card-text"><small class="text-muted">{{ $mbkm->excerpt }} </small></p>
+                              <p>@include('partials.reviewrate', ['course' => $mbkm->rating])</p>
                               <a href="/mbkm/{{ $mbkm->slug }}" class="pb-1" style="font-size: 15px;">View more</a>
                             </div>
                           </div>
