@@ -140,12 +140,12 @@
                             <h5 class="mb-0">Tambah Review</h5>
                             
                           </div>
-                          <div class="card-body">
+                          <div class="card-body fs-4">
                             {{ auth()->user()->username }}
                             <form action="{{ route('storerevm.add', $mbkm->slug) }}" method="POST">
                               @csrf
                               <input type="hidden" name="mbkm_id" value="{{ $mbkm->id }}">
-                              <div class="mb-3">
+                              <div class="mb-3 pt-3">
                                 
                                 @include('partials.rating', ['course' => $mbkm])
   
