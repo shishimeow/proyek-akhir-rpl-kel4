@@ -41,20 +41,25 @@
                             <td>{{ $list->faculty_name }}</td>
                             <td>{{ $list->slug }}</td>
                             <td>
+                              
+                              
                               <form id="edit-form" action= "{{ route('faculty.edit', $list->slug)  }}">
-                              <div class="demo-inline-spacing custom-edit">
-                                <button type="submit" class="btn btn-primary">Edit</button>
-                              </div>
+                                <button class="dropdown-item" type="submit">
+                                  <i class="bx bx-edit me-1"></i>Edit
+                                </button>
                               </form>
                               <form id="delete-form" action="{{ route('faculty.destroy', $list->slug)  }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <div class="demo-inline-spacing custom-edit">
-                                  <button type="submit" class="btn btn-primary">Delete</button>
-                                </div>
+                                
+                                <button class="dropdown-item" type="submit">
+                                  <i class="bx bx-trash me-1"></i>Delete
+                                </button>
                               </form>
+
                             </td>
                         </tr>
+                        
                         @endforeach
 
                       </table>
