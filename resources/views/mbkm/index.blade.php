@@ -69,31 +69,39 @@
               
               </div>
               
-              @foreach ($mbkms as $mbkm)
+              
               <div class="row mb-5">
                 <div class="col-md">
-                  <div class="card mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img class="card-img card-img-left" src='{{ asset("img/assets/elements/1.png") }}' alt="Card image" />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ $mbkm->mbkm_name }}</h5>
-                          <p class="card-text">
-                            Periode pendaftaran: {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }} - {{ \Carbon\Carbon::parse($mbkm->periode_end)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
-                          </p>
-                          <p class="card-text"><small class="text-muted">Rating: {{ $mbkm->rating }} </small></p>
-                          <p class="card-text"><small class="text-muted">{{ $mbkm->excerpt }} </small></p>
-                          <a href="/mbkm/{{ $mbkm->slug }}">View more</a>
-  
+                  
+                    
+                  </div>
+                </div>
+                <div class="row row-cols-md-2 g-3">
+                @foreach ($mbkms as $mbkm)
+                    <div class="col">
+                      <div class="card" style="max-width: 540px;">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="{{ asset('img/assets/elements/1.png') }}" class="card-img-top" alt="Course">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title" style="font-size: 15px;">{{ $mbkm->mbkm_name }}</h5>
+                              <p class="card-text" style="font-size: 14px;">
+                              Periode pendaftaran: {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                              </p>
+                              <p class="card-text"><small class="text-muted">{{ $mbkm->excerpt }} </small></p>
+                              <a href="/mbkm/{{ $mbkm->slug }}" class="pb-1" style="font-size: 15px;">View more</a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  @endforeach
                 </div>
+               
 
-              @endforeach
+              
 
               {{-- <div class="container">
                 <div class="row">
