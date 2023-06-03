@@ -117,16 +117,16 @@
               @endforeach --}}
 
               <div>
-              <div class="row row-cols-2 row-cols-md-3 g-4 ">
+              <div class="row row-cols-2 row-cols-md-4 g-3 ">
                     @foreach($support_courses as $support_course)
                     
                     <div class="col">
                     <div class="card h-100">
                     <img src='{{ asset("img/assets/elements/1.png") }}' class="card-img-top" alt="Course">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                        <p class="card-text">Rating: {{ $support_course->rating }}</p>
-                        <a href="/sc/{{ $support_course->slug }}" class="btn btn-primary">View more</a>
+                        <h5 class="card-title" style="font-size: 15px;">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
+                        <p class="card-text" style="font-size: 14px;">Rating: {{ $support_course->rating }}</p>
+                        <a href="/sc/{{ $support_course->slug }}"  class="pb-1" style="font-size: 15px;">View more</a>
                     </div>
                     </div>
                     </div>
