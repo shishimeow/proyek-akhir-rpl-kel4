@@ -22,7 +22,8 @@
     <div class="col-lg-6">
       <div class="signup-wrapper">
         <div class="form-wrapper">
-          <h4 class="signuptext">Sign Up</h4>
+        <h4 class="signuptext text-center text-lg-start">Sign Up</h4>
+
           <p class="text-sm mb-25">
             Create your account
           </p>
@@ -85,6 +86,7 @@
                       text-center
                     "
                     type="submit"
+                    onclick="myFunction()"
                   >
                     Sign Up
                   </button>
@@ -113,5 +115,29 @@
 <!-- ========= All Javascript files linkup ======== -->
 <script src={{ asset("js/assets/bootstrap.bundle.min.js") }}></script>
 <script src={{ asset("js/assets/main.js") }}></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+      /* Menyesuaikan ukuran elemen Swal */
+      .swal2-popup {
+        width: 400px; /* Atur lebar yang diinginkan */
+        height: 50px; /* Atur tinggi yang diinginkan */
+        font-size: 8px;
+        font-family: Arial, sans-serif;
+        color: #0E7658;
+        text-align: center;
+        border: 1px solid #1CAF66;
+        background-color: #D1E7DD;
+        
+      }
+    </style>
+    <script>
+      function myFunction() {
+        Swal.fire({
+          position: 'top',         
+          title: 'Registrasi Berhasil',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    </script>
 @endsection
