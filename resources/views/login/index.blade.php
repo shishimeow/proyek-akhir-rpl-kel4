@@ -74,6 +74,7 @@
                     w-100
                     text-center
                   "
+                  onclick="myFunction()"
                 >
                   Masuk
                 </button>
@@ -101,7 +102,35 @@
 
 
 <!-- ========= All Javascript files linkup ======== -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/asstes/main.js') }}"></script>
+
+<style>
+  .swal2-popup {
+        width: 400px; 
+        height: 50px; 
+        font-size: 8px;
+        font-family: Arial, sans-serif;
+        color: #0E7658;
+        text-align: center;
+        border: 1px solid #1CAF66;
+        background-color: #D1E7DD;
+        
+      }
+</style>
+
+<script>
+  function myFunction() {
+    Swal.fire({
+      position: 'top',
+      
+      title: 'Kamu Berhasil Login',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+</script>
+
 
 @endsection
