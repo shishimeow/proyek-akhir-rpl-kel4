@@ -74,7 +74,7 @@
                     w-100
                     text-center
                   "
-                  onclick="myFunction()"
+                  onclick="myLogin()"
                 >
                   Masuk
                 </button>
@@ -104,7 +104,7 @@
 <!-- ========= All Javascript files linkup ======== -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/asstes/main.js') }}"></script>
+<script src="{{ asset('js/assets/main.js') }}"></script>
 
 <style>
   .swal2-popup {
@@ -120,17 +120,7 @@
       }
 </style>
 
-<script>
-  function myFunction() {
-    Swal.fire({
-      position: 'top',
-      
-      title: 'Login berhasil',
-      showConfirmButton: false,
-      timer: 1500
-    });
-  }
-</script>
+
 
 
 @endsection
