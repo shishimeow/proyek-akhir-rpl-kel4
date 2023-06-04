@@ -27,9 +27,9 @@
       @foreach($comments as $comment)
       <div class="display-comment">
           <div class="card card-body col-12">
-              <div class="col-12">
+              <div class="col-12 ">
                 <strong>{{ $comment->user->username }}</strong>
-                {{ \Carbon\Carbon::parse($comment->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                <p>{{ \Carbon\Carbon::parse($comment->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}</p>
                 
               </div>
               
@@ -49,10 +49,20 @@
                                 </div>
                             </div>
                                                                                                                                  
-                            <div class="col-12 fs-5 pb-3">
+                            <div class="col-12 fs-5 pt-0" style="margin-top: -40px;">
                               <p>{{ $comment->comment }}</p>
                             </div>
+                            <div class="">
+                              <a data-bs-toggle="collapse" href="#replyComment{{$loop->index}}" aria-expanded="false" aria-controls="replyComment{{$loop->index}}">Rely</a>
+                              </div>
+                              
                             </div>
+                            <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$comment->id}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$comment->id}}">
+                                @if( $comment->where('parent_id', $comment->id)->count() > 0)
+                                {{ $comment->where('parent_id', $comment->id)->count() }} Replies
+                                @else Replies
+                                @endif
+                            </a>
                         
 
                             </div>
@@ -61,8 +71,9 @@
                             
 
               </div>
-              
-              <form class="collapse multi-collapse" action="{{ route('update.add') }}" method="POST" id="editComment{{ $comment->id }}">
+              <div class="collapse multi-collapse" id="multiCollapseExample{{$loop->index}}">
+              <div class="card card-body">      
+              <form class="collapse multi-collapse" action="{{ route('update.add') }}" method="POST" id="editComment{{ $comment->id }}" style="padding-left:15px;">
                   @method('put')
                   @csrf
                   <input type="hidden" name="comment_id" value="{{ $comment->id }}">
@@ -80,10 +91,9 @@
                   @csrf
                   <input type="hidden" name="comment_id" value="{{ $comment->id }}">
               </form>
+              
               @endif
-              <div class="pt-3">
-              <a data-bs-toggle="collapse" href="#replyComment{{$loop->index}}" aria-expanded="false" aria-controls="replyComment{{$loop->index}}">Reply</a>
-              </div>
+              
 
               
               <form class="collapse multi-collapse" action="{{ route('reply.add') }}" method="POST" id="replyComment{{$loop->index}}">
@@ -101,12 +111,7 @@
                   </div>
                 </form>
 
-              <a class="comment__card-footer" data-bs-toggle="collapse" href="#replyCollapse{{$comment->id}}" role="button" aria-expanded="false" aria-controls="replyCollapse{{$comment->id}}">
-                @if( $comment->where('parent_id', $comment->id)->count() > 0)
-                {{ $comment->where('parent_id', $comment->id)->count() }} Replies
-                @else Replies
-                @endif
-            </a>
+              
 
               @include('partials.reply', ['comments' => $comment->replies])
           </div>
