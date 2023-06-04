@@ -52,7 +52,7 @@
                                 @csrf
                                 @method('delete')
                                 
-                                <button class="dropdown-item"onclick="myFunction()" type="">
+                                <button class="dropdown-item"onclick="myDelete()" type="">
                                   <i class="bx bx-trash me-1"></i>Delete
                                 </button>
                               </form>
@@ -91,18 +91,7 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     
-    <script>
-      function myFunction() {
-        swal({
-        title: "Are you sure?",
-        
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-
-      }
-    </script>
+    
 
 
 
