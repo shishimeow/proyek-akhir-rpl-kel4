@@ -125,7 +125,7 @@
     Swal.fire({
       position: 'top',
       
-      title: 'Registrasi berhasil',
+      title: 'Login berhasil',
       showConfirmButton: false,
       timer: 1500
     });
