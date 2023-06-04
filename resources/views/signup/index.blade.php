@@ -86,7 +86,7 @@
                       text-center
                     "
                     type="submit"
-                    onclick="myFunction()"
+                    onclick="mySignup()"
                   >
                     Sign Up
                   </button>
@@ -114,7 +114,7 @@
 
 <!-- ========= All Javascript files linkup ======== -->
 <script src={{ asset("js/assets/bootstrap.bundle.min.js") }}></script>
-<script src={{ asset("js/assets/main.js") }}></script>
+<script src="{{ asset('js/assets/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
       /* Menyesuaikan ukuran elemen Swal */
@@ -130,14 +130,5 @@
         
       }
     </style>
-    <script>
-      function myFunction() {
-        Swal.fire({
-          position: 'top',         
-          title: 'Registrasi Berhasil',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      }
-    </script>
+    
 @endsection
