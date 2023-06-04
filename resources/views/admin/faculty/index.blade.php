@@ -44,7 +44,7 @@
                               
                               
                               <form id="edit-form" action= "{{ route('faculty.edit', $list->slug)  }}">
-                                <button class="dropdown-item" type="submit">
+                                <button class="dropdown-item"  type="submit">
                                   <i class="bx bx-edit me-1"></i>Edit
                                 </button>
                               </form>
@@ -52,7 +52,7 @@
                                 @csrf
                                 @method('delete')
                                 
-                                <button class="dropdown-item" type="submit">
+                                <button class="dropdown-item"onclick="myFunction()" type="">
                                   <i class="bx bx-trash me-1"></i>Delete
                                 </button>
                               </form>
@@ -69,6 +69,8 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('vendor/assets/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('vendor/assets/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('vendor/assets/js/bootstrap.js') }}"></script>
@@ -88,5 +90,24 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    <script>
+      function myFunction() {
+        swal({
+        title: "Are you sure?",
+        
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+
+      }
+    </script>
+
+
+
+
+
+
 
 @endsection
