@@ -5,6 +5,10 @@
               <div class="img-container">
                 <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="40%">
                 <span class="app-brand-text demo fw-bolder ms-0" style="text-transform: capitalize; font-size: 25px">Dashboard Admin</span>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
               </div>     
               </a>
   

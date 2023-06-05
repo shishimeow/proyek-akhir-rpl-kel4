@@ -6,8 +6,14 @@
           <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo d-flex" style="padding-left: 10px;">
               <div class="img-container">
+<<<<<<< HEAD
                 <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="30%">
                 <span class="app-brand-text demo fw-bolder ms-0" style="text-transform: capitalize; font-size: 20px; padding-top: 12px; padding-left: 5px;">I-CourseCenter</span>
+=======
+              <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="30%">
+                <span class="app-brand-text demo fw-bolder ms-0" style="text-transform: capitalize; font-size: 20px; padding-top: 12px; padding-left: 5px;">I-CourseCenter</span>
+
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
               </div>  
                 
   
