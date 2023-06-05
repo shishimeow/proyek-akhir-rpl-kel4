@@ -33,38 +33,29 @@
                     <!-- Account -->
                     <div class="card-body">
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        @if(auth()->user()->image)
-                        <input type="hidden" name="oldImage" value="{{ auth()->user()->image }}">
-                        <img src="{{ asset('storage/'. auth()->user()->image) }}" alt="user-avatar"
-                            class="d-block rounded"
-                            height="100"
-                            width="100"
-                            id="image"
-                        >
-                        @else
-                        <img src="{{ URL::to('/') }}/img/user.png" alt="user-avatar"
-                            class="d-block rounded"
-                            height="100"
-                            width="100"
-                            id="image"
-                        >
-                        @endif
 
+                      
+                      
+    
 
-                            <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload new photo</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input
-                              name="image"
-                              type="file"
-                              id="upload"
-                              class="account-file-input"
-                              hidden
-                              accept="image/png, image/jpeg"
-                              onchange="previewImage()"
-                            />
+                          <div class="button-wrapper">
+               
+
+                          <img class="img-preview rounded"
+                          height="100"
+                          width="100"
+                          
+                          >
+                          
+                          
+                         
+                          <p>Upload New Photo</p>
+                            <input class="form-control @error('image') is-invalid @enderror" type ="file" id="image" name="image" onchange="previewImage()">
+
+                             
+                            
                           </label>
+                          
                           
 
                           
@@ -134,6 +125,7 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    
     <script src="{{ asset('vendor/assets/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('vendor/assets/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('vendor/assets/js/bootstrap.js') }}"></script>
@@ -152,7 +144,28 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>            
+    <script>
+      function previewImage(){
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
 
+        imgPreview.style.display ='block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent){
+          imgPreview.src = oFREvent.target.result;
+            
+        }
+
+
+
+
+      }
+      
+
+
+    </script>
     @include('layouts.preview')
 @endsection
  --}}

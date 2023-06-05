@@ -52,6 +52,8 @@
                         </div>
                         <div class="card accordion-item">
                           <h2 class="accordion-header" id="headingTwo">
+<<<<<<< HEAD
+=======
                             <button
                               type="button"
                               class="accordion-button collapsed"
@@ -70,7 +72,7 @@
                             aria-labelledby="headingTwo"
                           >
                           <div class="accordion-body">
-                            @foreach(explode(';',$mbkm->benefit) as $row)
+                            @foreach(explode('.',$mbkm->benefit) as $row)
                             <li>{{ $row }}</li>
                             @endforeach
                         </div>
@@ -79,10 +81,52 @@
                         </div>
                         <div class="card accordion-item">
                           <h2 class="accordion-header" id="headingThree">
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                             <button
                               type="button"
                               class="accordion-button collapsed"
                               data-bs-toggle="collapse"
+<<<<<<< HEAD
+                              data-bs-target="#panelsStayOpen-collapseTwo"
+                              aria-expanded="false"
+                              aria-controls="panelsStayOpen-collapseTwo"
+=======
+                              data-bs-target="#panelsStayOpen-collapseThree"
+                              aria-expanded="false"
+                              aria-controls="panelsStayOpen-collapseThree"
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
+                            >
+                            Benefit
+                            </button>
+                          </h2>
+    
+                          <div
+<<<<<<< HEAD
+                            id="panelsStayOpen-collapseTwo"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="headingTwo"
+=======
+                            id="panelsStayOpen-collapseThree"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="headingThree"
+                            
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
+                          >
+                          <div class="accordion-body">
+                            @foreach(explode(';',$mbkm->benefit) as $row)
+                            <li>{{ $row }}</li>
+                            @endforeach
+                        </div>
+                        
+                          </div>
+                        </div>
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header" id="headingFour">
+                            <button
+                              type="button"
+                              class="accordion-button collapsed"
+                              data-bs-toggle="collapse"
+<<<<<<< HEAD
                               data-bs-target="#panelsStayOpen-collapseThree"
                               aria-expanded="false"
                               aria-controls="panelsStayOpen-collapseThree"
@@ -111,6 +155,10 @@
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseFour"
                               aria-expanded="false"
+=======
+                              data-bs-target="#panelsStayOpen-collapseFour"
+                              aria-expanded="false"
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                               aria-controls="panelsStayOpen-collapseFour"
                             >
                             Requirements
@@ -140,11 +188,22 @@
                             <h5 class="mb-0">Tambah Review</h5>
                             
                           </div>
+<<<<<<< HEAD
                           <div class="card-body">
                             <form action="{{ route('storerevm.add', $mbkm->slug) }}" method="POST">
                               <div class="rating-box">
                                 @csrf
                                 <input type="hidden" name="mbkm_id" value="{{ $mbkm->id }}">
+=======
+                          <div class="card-body fs-4">
+                            {{ auth()->user()->username }}
+                            <form action="{{ route('storerevm.add', $mbkm->slug) }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="mbkm_id" value="{{ $mbkm->id }}">
+                              <div class="mb-3 pt-3">
+                                
+                                @include('partials.rating', ['course' => $mbkm])
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
   
                                 @include('partials.rating', ['course' => $mbkm])
                               
@@ -170,6 +229,7 @@
                       <div class="card" style="overflow-y: scroll; height:400px">
                       @foreach ($reviews->sortByDesc('created_at') as $review)
                       <div class="card card-body col-12">
+<<<<<<< HEAD
                         
                         <div>
                           <div class="row">
@@ -255,6 +315,81 @@
                           }
                 
                         </script>
+=======
+                          <div class="row">
+                            <div class="col">
+                            <div class="d-flex justify-content-start">
+                                <strong>{{ $review->users->username }}</strong>
+                                {{ \Carbon\Carbon::parse($review->created_at)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
+                            </div>
+                            </div>
+                            
+                          <div class="col">
+                          <div class="d-flex justify-content-end">
+                              <button type="button" class="btn dropdown-toggle hide-arrow text-end " data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" data-bs-toggle="collapse" href="#edit{{$loop->index}}"
+                                    ><i class="bx bx-edit-alt me-2"></i> Edit</a
+                                  >
+                                  <a class="dropdown-item" href="#" onclick="deleteReview({{ $loop->index }})"
+                                    ><i class="bx bx-trash me-2"></i> Delete</a
+                                  >
+                                </div>
+                            </div>
+                            </div>
+                            
+                          
+                              
+                          <div class="form-group row pt-1 pb-3">
+                            @include('partials.reviewrate', ['course' => $review->rating])
+                            
+                          </div>
+                          
+          
+                          
+  
+                          @if($review->user_id == auth()->user()->id)
+                          
+                           
+                            <div class="col-12 fs-5 pb-3">
+                              {{ $review->rev_mbkm }}
+                            </div>
+                          
+                          
+                          
+
+
+
+
+
+                          <form class="collapse multi-collapse " style="padding-left: 30px;" action="{{ route('mupdate.add') }}" method="POST" id="edit{{ $loop->index }}">
+                              @method('put')
+                              @csrf
+          
+                              @include('partials.editrate', ['course' => $review->rating, 'count' => $loop->index])
+                              
+                              <input type="hidden" name="rev_id" value="{{ $review->id }}">
+                              
+                              <div class="col-12 pb-2 mb-3">
+                                  <textarea class="col-8 d-flex form-control" rows="5" name="rev_sc" id="rev_sc" wrap="hard" required>{{ $review->rev_sc }}</textarea>
+                              </div>
+                              <div class="pb-2">
+                              <button type="button" class="btn btn-primary" name="action" onclick="cancelForm({{ $loop->index }})">Cancel</button>
+                              <button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+
+                              </div>
+                              
+                          </form>
+                          <form action="{{ route('mdelete.add') }}" method="POST" id="del{{ $loop->index }}">
+                              @method('delete')
+                              @csrf
+                              <input type="hidden" name="rev_id" value="{{ $review->id }}">
+                          </form>
+                          @endif
+                          @include('partials.comment', ['review' => $review, 'type' => 'mbkm'])
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                       </div>
                     </div>
                     <br>

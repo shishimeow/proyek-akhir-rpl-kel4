@@ -74,6 +74,7 @@
                     w-100
                     text-center
                   "
+                  onclick="myLogin()"
                 >
                   Masuk
                 </button>
@@ -101,6 +102,7 @@
 
 
 <!-- ========= All Javascript files linkup ======== -->
+<<<<<<< HEAD
 
 <script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/assets/main.js') }}"></script>
@@ -121,5 +123,27 @@
 </style>
 
 @include('partials.notif')
+=======
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/assets/main.js') }}"></script>
+>>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
+
+<style>
+  .swal2-popup {
+        width: 400px; 
+        height: 50px; 
+        font-size: 8px;
+        font-family: Arial, sans-serif;
+        color: #0E7658;
+        text-align: center;
+        border: 1px solid #1CAF66;
+        background-color: #D1E7DD;
+        
+      }
+</style>
+
+
+
 
 @endsection
