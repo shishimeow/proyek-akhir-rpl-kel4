@@ -163,36 +163,5 @@ starEdit.forEach((star, index1) => {
 });
 
 
-<<<<<<< HEAD
 
 
-=======
-      function myDelete() {
-        swal({
-        title: "Are you sure?",
-        
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-
-      }
-    
-      function mySignup() {
-        Swal.fire({
-          position: 'top',         
-          title: 'Registrasi Berhasil',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      }
-      function myLogin() {
-        Swal.fire({
-          position: 'top',
-          
-          title: 'Kamu Berhasil Login',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      }
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
