@@ -103,13 +103,11 @@
 
 
 
-<!-- ========= All Javascript files linkup ======== -<->
+{{-- <!-- ========= All Javascript files linkup ======== -<-> --}}
 
 <script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/assets/main.js') }}"></script>
 
 @include('partials.notif')
-
-@endsectionude('partials.notif')
 
 @endsection

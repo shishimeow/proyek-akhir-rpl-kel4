@@ -86,7 +86,6 @@
                       text-center
                     "
                     type="submit"
-                    onclick="mySignup()"
                   >
                     Sign Up
                   </button>
