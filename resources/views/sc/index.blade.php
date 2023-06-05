@@ -70,19 +70,13 @@
               
               </div>
 
-<<<<<<< HEAD
 
               <div>
               <div class="row row-cols-2 row-cols-md-3 g-3 ">
-=======
-              <div>
-              <div class="row row-cols-2 row-cols-md-4 g-3 ">
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                     @foreach($support_courses as $support_course)
                     
                     <div class="col">
                     <div class="card h-100">
-<<<<<<< HEAD
                     @if($support_course->picture)
                         <img src="{{ asset('storage/'. $support_course->picture) }}" class="card-img-top" alt="Tampilan SC" style="width:40%; margin:auto;">
                     @else
@@ -98,16 +92,6 @@
                         @include('partials.reviewrate', ['course' => $support_course->rating])
                         </div>
 
-=======
-                    <img src='{{ asset("img/assets/elements/1.png") }}' class="card-img-top" alt="Course">
-                    <div class="card-body">
-                        <h5 class="card-title" style="font-size: 15px;">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                        
-                        <div>
-                        @include('partials.reviewrate', ['course' => $support_course->rating])
-
-                        </div>
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                         <a href="/sc/{{ $support_course->slug }}"  class="pb-1" style="font-size: 15px;">View more</a>
                     </div>
                     </div>

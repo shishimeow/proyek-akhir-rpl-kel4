@@ -72,13 +72,8 @@
               
               <div class="row mb-5">
                 <div class="col-md">
-<<<<<<< HEAD
 
 
-=======
-                  
-                    
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                   </div>
                 </div>
                 <div class="row row-cols-md-2 g-3">
@@ -94,7 +89,6 @@
                           <div class="col-md-8">
                             <div class="card-body">
                               <h5 class="card-title" style="font-size: 15px;">{{ $mbkm->mbkm_name }}</h5>
-<<<<<<< HEAD
                               <div>
                                 @include('partials.reviewrate', ['course' => $mbkm->rating])
                               </div>
@@ -109,44 +103,10 @@
                       </div>
                     </div>
                     @endforeach
-=======
-                              <p class="card-text" style="font-size: 14px;">
-                              Periode pendaftaran: {{ \Carbon\Carbon::parse($mbkm->periode_begin)->locale('id_ID')->isoFormat('D MMMM YYYY') }}
-                              </p>
-                              <p class="card-text"><small class="text-muted">{{ $mbkm->excerpt }} </small></p>
-                              <p>@include('partials.reviewrate', ['course' => $mbkm->rating])</p>
-                              <a href="/mbkm/{{ $mbkm->slug }}" class="pb-1" style="font-size: 15px;">View more</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  @endforeach
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
                 </div>
                
 
               
-<<<<<<< HEAD
-=======
-
-              {{-- <div class="container">
-                <div class="row">
-                    @foreach($support_courses as $support_course)
-                    <div class="col-md-4">
-                    <div class="card">
-                    <img src='{{ asset("img/assets/elements/1.png") }}' class="card-img-top" alt="Course">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                        <p class="card-text">Rating: {{ $support_course->rating }}</p>
-                        <a href="/sc/{{ $support_course->slug }}" class="btn btn-primary">View more</a>
-                    </div>
-                    </div>
-                    </div>
-                    @endforeach
-                </div> --}}
-            {{-- </div> --}}
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
             </div>
   
             
