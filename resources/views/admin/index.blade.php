@@ -70,75 +70,86 @@
                     <!-- Content -->
                     
                     
-                    <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">Review /</span> MBKM</h4>
+                    <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">Review /</span> SC</h4>
                       
                       <!-- Basic Bootstrap Table -->
                       
-                        
-                        
+                          <div class="card" style="overflow-y: scroll; height:400px">
                             <table class="table">
-                                <tr>
-                                    <th>Nama Course</th>
-                                    <th>Username</th>
-                                    <th>Review</th>
-                                    <th>Action</th>
-                                </tr>
-                                @foreach($reviewmbkms as $reviewmbkm)
-                                <tr>
-                                    <td>{{ $reviewmbkm->mbkm->mbkm_name }}</td>
-                                    <td>{{ $reviewmbkm->users->username }}</td>
-                                    <td>{{ $reviewmbkm->rev_mbkm }}</td>
-                                <td>
-                                        
-                                <form id="delete-form" action="{{ route('mdelete.add')  }}" method="POST">
-                                  @csrf
-                                  @method('delete')
-                                  <div class="demo-inline-spacing custom-edit">
-                                    <input type="hidden" name="rev_id" value="{{ $reviewmbkm->id }}">
-                                    <button type="submit" class="btn btn-primary">Delete</button>
-                                  </div>
-                                </form>
-                                </td>
-                                </tr>
-                                @endforeach
-                              </table>
-                        </div>
-                      </div>
-
-                      
-                      <!--/ Basic Bootstrap Table -->
-{{-- 
-
-                      <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">Review /</span> SC</h4>
-                      
-                      <!-- Basic Bootstrap Table -->
-                      
-                        
-                        
-                            <table class="table">
-                                <tr>
-                                    <th>Nama Course</th>
-                                    <th>Username</th>
-                                    <th>Review</th>
-                                    <th>Action</th>
-                                </tr>
-                                @foreach($reviewscs as $reviewsc)
-                                <tr>
-                                    <td>{{ $reviewsc->supportcourse->courses_name }}</td>
-                                    <td>{{ $reviewsc->users->username }}</td>
-                                    <td>{{ $reviewsc->rev_sc }}</td>
-                                <td>
-                                        
-                                <div class="demo-inline-spacing custom-edit">
-                                    <button type="button" class="btn btn-primary">Delete</button>
+                              <tr>
+                                  <th>Nama Course</th>
+                                  <th>Username</th>
+                                  <th>Review</th>
+                                  <th>Action</th>
+                              </tr>
+                              @foreach($reviewscs as $reviewsc)
+                              <tr>
+                                  <td>{{ $reviewsc->supportcourse->courses_name }}</td>
+                                  <td>{{ $reviewsc->users->username }}</td>
+                                  <td>{{ $reviewsc->rev_sc }}</td>
+                              <td>
+                                      
+                              <form id="delete-form" action="{{ route('sdelete.add')  }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                
+                                  <input type="hidden" name="rev_id" value="{{ $reviewsc->id }}">
+                                  <button class="dropdown-item" type="submit">
+                                    <i class="bx bx-trash me-1"></i>Delete
+                                  </button>
                                 </div>
-                                </td>
-                                </tr>
-                                @endforeach
-                              </table>
+                              </form>
+                              </td>
+                              </tr>
+                              @endforeach
+                            </table>
+                          </div>
+                        
+                            
+                        </div>
+
+
+                        <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">Review /</span> MBKM</h4>
+                      
+                      <!-- Basic Bootstrap Table -->
+                      
+                          <div class="card" style="overflow-y: scroll; height:400px">
+                            <table class="table">
+                              <tr>
+                                  <th>Nama MBKM</th>
+                                  <th>Username</th>
+                                  <th>Review</th>
+                                  <th>Action</th>
+                              </tr>
+                              @foreach($reviewmbkms as $reviewmbkm)
+                              <tr>
+                                  <td>{{ $reviewmbkm->mbkm->mbkm_name }}</td>
+                                  <td>{{ $reviewmbkm->users->username }}</td>
+                                  <td>{{ $reviewmbkm->rev_mbkm }}</td>
+                              <td>
+                                      
+                              <form id="delete-form" action="{{ route('mdelete.add')  }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                
+                                  <input type="hidden" name="rev_id" value="{{ $reviewmbkm->id }}">
+                                  <button class="dropdown-item" type="submit">
+                                    <i class="bx bx-trash me-1"></i>Delete
+                                  </button>
+                                </div>
+                              </form>
+                              </td>
+                              </tr>
+                              @endforeach
+                            </table>
+                          </div>
+                        
+                            
                         </div>
                       </div>
-                      <!--/ Basic Bootstrap Table --> --}}
+
+
+                      
 
 
                           <!-- Core JS -->

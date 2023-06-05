@@ -1,7 +1,6 @@
 @extends('layouts.logsign')
 
 @section('container')
-
 <div class="row g-0 auth-row">
   <div class="col-lg-6">
     <div class="auth-cover-wrapper bg-primary-100">
@@ -23,6 +22,7 @@
   <div class="col-lg-6">
     <div class="signup-wrapper">
       <div class="form-wrapper">
+
         <h6 class="logintext">Login</h6>
         <p class="text-sm mb-25">
           Silakan masuk dengan akun Anda
@@ -101,7 +101,25 @@
 
 
 <!-- ========= All Javascript files linkup ======== -->
+
 <script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/asstes/main.js') }}"></script>
+<script src="{{ asset('js/assets/main.js') }}"></script>
+
+
+<style>
+  .swal2-popup {
+        width: 400px; 
+        height: 50px; 
+        font-size: 8px;
+        font-family: Arial, sans-serif;
+        color: #0E7658;
+        text-align: center;
+        border: 1px solid #1CAF66;
+        background-color: #D1E7DD;
+        
+      }
+</style>
+
+@include('partials.notif')
 
 @endsection

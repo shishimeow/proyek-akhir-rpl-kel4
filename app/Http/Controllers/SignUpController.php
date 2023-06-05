@@ -35,7 +35,7 @@ class SignUpController extends Controller
 
         User::create($validate);
 
-        session()->flash('success', 'Akun berhasil dibuat! Silakan login.');
+        session()->flash('signSuccess', 'Registrasi berhasil! Silakan login');
         
         return redirect('/login');
     }

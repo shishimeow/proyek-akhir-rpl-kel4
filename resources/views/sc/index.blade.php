@@ -21,7 +21,7 @@
                               <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-                <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">Support Course/</span> SC</h4>
+                <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">Support Course /</span> SC</h4>
   
                 <!-- Toast with Placements -->
                 <div
@@ -69,63 +69,30 @@
               </div>
               
               </div>
-              
-              {{-- @foreach ($support_courses as $support_course)
-              <div class="row mb-5">
-                <div class="col-md">
-                  <div class="card mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img class="card-img card-img-left" src='{{ asset("img/assets/elements/1.png") }}' alt="Card image" />
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                          <p class="card-text">
-                            Rating: {{ $support_course->rating }}
-                          </p>
-                          <p class="card-text"><small class="text-muted">Positions : Software Engineer, Copywriter, Internet Marketing, etc. </small></p>
-                          <a href="mbkm.html">View more</a>
-  
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md">
-                  <div class="card mb-3">
-                    <div class="row g-0">
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                          <p class="card-text">
-                            Rating: {{ $support_course->rating }} 
-                          </p>
-                          
-                          <p class="card-text"><small class="text-muted">Positions : Business Development, Marketing, Technology, etc. </small></p>
-                          <a href="/sc/{{ $support_course->slug }}" class="btn btn-primary">View more</a>
-  
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <img class="card-img card-img-right" src='{{ asset("img/assets/elements/1.png") }}' alt="Card image" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endforeach --}}
 
-              <div class="container">
-                <div class="row">
+
+              <div>
+              <div class="row row-cols-2 row-cols-md-3 g-3 ">
                     @foreach($support_courses as $support_course)
-                    <div class="col-md-4">
-                    <div class="card">
-                    <img src='{{ asset("img/assets/elements/1.png") }}' class="card-img-top" alt="Course">
+                    
+                    <div class="col">
+                    <div class="card h-100">
+                    @if($support_course->picture)
+                        <img src="{{ asset('storage/'. $support_course->picture) }}" class="card-img-top" alt="Tampilan SC" style="width:40%; margin:auto;">
+                    @else
+                        <img src="{{ URL::to('/') }}/img/image1.jpg" class="card-img-top" alt="Tampilan SC" style="width:40%; margin:auto;">
+                    @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
-                        <p class="card-text">Rating: {{ $support_course->rating }}</p>
-                        <a href="/sc/{{ $support_course->slug }}" class="btn btn-primary">View more</a>
+                        <h5 class="card-title" style="font-size: 15px;">{{ $support_course->courses_id }} - {{ $support_course->courses_name }}</h5>
+                        
+                          <p>SKS: {{ $support_course->course_credits }}</p>
+                        
+
+                        <div class="pb-2">
+                        @include('partials.reviewrate', ['course' => $support_course->rating])
+                        </div>
+
+                        <a href="/sc/{{ $support_course->slug }}"  class="pb-1" style="font-size: 15px;">View more</a>
                     </div>
                     </div>
                     </div>
@@ -134,7 +101,7 @@
             </div>
             </div>
   
-            
+
               <div class="content-backdrop fade"></div>
             </div>
             <!-- Content wrapper -->

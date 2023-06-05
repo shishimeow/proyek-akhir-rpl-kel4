@@ -73,25 +73,6 @@ class MbkmController extends Controller
         return redirect('mbkm');
     }
 
-    // public function filterRange(Request $request){
-    //     if($request->has('filter')){
-    //         $toDate = Carbon::parse($request->endAt);
-    //         $fromDate = Carbon::parse($request->beginAt);
-    //         $range = $toDate->diffInMonths($fromDate);
-    //         $months = [
-    //             'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-    //             'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-    //         ];
-
-    //         return view('mbkm.index', [
-    //             'title' => 'MBKM',
-    //             'mbkms' => $mbkm,
-    //             'months' => $months
-    //         ]);
-    //     }
-
-    //     return redirect('mbkm');
-    // }
 
     public function store(Request $request, Mbkm $course){
         switch ($request->input('action')) {

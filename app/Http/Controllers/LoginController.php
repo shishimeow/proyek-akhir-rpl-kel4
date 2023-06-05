@@ -45,12 +45,6 @@ class LoginController extends Controller
             }
             return redirect()->intended('/sc');
         }
-        if(Auth::guard('admin')->attempt($credentials, $remember_me)){
-            if (session_status() == PHP_SESSION_ACTIVE) {
-                session()->regenerate();
-            }
-            return redirect()->intended('/admin');
-        }
 
         session()->flash('loginError', 'Login gagal!');
 

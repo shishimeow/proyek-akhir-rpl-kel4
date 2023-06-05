@@ -3,8 +3,8 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
               <div class="img-container">
-                <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="35%">
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">Dashboard Admin</span>
+                <img src="{{ asset('img/assets/avatars/Logo.png') }}" alt="Logo" width="40%">
+                <span class="app-brand-text demo fw-bolder ms-0" style="text-transform: capitalize; font-size: 25px">Dashboard Admin</span>
               </div>     
               </a>
   

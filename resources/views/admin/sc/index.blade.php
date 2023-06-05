@@ -25,7 +25,7 @@
             <div class="container-xxl flex-grow-1 container-p-y">
               
               <!-- Basic Bootstrap Table -->
-              <div class="card">
+              <div class="card" style="overflow-y: scroll; height:400px">
                 
                 
                     <table class="table">
@@ -45,18 +45,22 @@
                             <td>{{ $list->rating }}</td>
                             <td>{{ $list->slug }}</td>
                             <td>
-                              <form id="edit-form" action= "{{ route('sc.edit', $list->slug)  }}">
-                              <div class="demo-inline-spacing custom-edit">
-                                <button type="submit" class="btn btn-primary">Edit</button>
-                              </div>
+
+                              <form id="edit-form" action="{{ route('sc.edit', $list->slug) }}" method="GET">
+                                <button class="dropdown-item" type="submit">
+                                  <i class="bx bx-edit me-1"></i>Edit
+                                </button>
                               </form>
-                              <form id="delete-form" action="{{ route('sc.destroy', $list->slug)  }}" method="POST">
+
+                              <form id="delete-form" action="{{ route('sc.destroy', $list->slug) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <div class="demo-inline-spacing custom-edit">
-                                  <button type="submit" class="btn btn-primary">Delete</button>
-                                </div>
+                                
+                                <button class="dropdown-item" type="submit">
+                                  <i class="bx bx-trash me-1"></i>Delete
+                                </button>
                               </form>
+
                             </td>
                         </tr>
                         @endforeach
