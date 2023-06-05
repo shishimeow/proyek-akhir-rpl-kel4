@@ -92,7 +92,7 @@ class MbkmController extends Controller
         
                 ReviewMbkm::create($validate);
 
-                session()->flash('success', 'Review berhasil ditambahkan!');
+                session()->flash('successRev', 'Review berhasil ditambahkan!');
                 return redirect('/mbkm/'.$course->slug);
                 break;
         }
@@ -106,6 +106,7 @@ class MbkmController extends Controller
         $review->rating = $request->input('rating');
         $review->save();
     
+        session()->flash('successRev', 'Review berhasil diperbarui!');
         return back();
     }
 
@@ -113,7 +114,7 @@ class MbkmController extends Controller
         $id = $request->input('rev_id');
 
         ReviewMbkm::destroy($id);
-        session()->flash('delete', 'Review berhasil dihapus!');
+        session()->flash('deleteRev', 'Review berhasil dihapus!');
         return back();
     }
 

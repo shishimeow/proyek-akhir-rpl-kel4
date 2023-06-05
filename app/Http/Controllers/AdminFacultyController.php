@@ -41,6 +41,7 @@ class AdminFacultyController extends Controller
 
         Faculty::create($validatedData);
         
+        session()->flash('createData', 'Data berhasil ditambahkan!');
         return redirect('/admin/faculty');
     }
 
@@ -82,6 +83,7 @@ class AdminFacultyController extends Controller
 
         Faculty::where('id', $faculty->id)->update($validatedData);
         
+        session()->flash('createData', 'Data berhasil diperbarui!');
         return redirect('/admin/faculty');
     }
 
@@ -93,7 +95,7 @@ class AdminFacultyController extends Controller
         $id = Faculty::where('slug', $slug)->select('id')->get();
 
         Faculty::destroy($id);
-        session()->flash('delete', 'Review berhasil dihapus!');
+        session()->flash('delData', 'Data berhasil dihapus!');
         return back();
     }
 

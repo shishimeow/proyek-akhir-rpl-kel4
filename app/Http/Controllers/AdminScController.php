@@ -50,6 +50,7 @@ class AdminScController extends Controller
 
         SupportCourse::create($validate);
         
+        session()->flash('createData', 'Data berhasil ditambahkan!');
         return redirect('/admin/sc');
     }
 
@@ -91,6 +92,7 @@ class AdminScController extends Controller
 
         SupportCourse::where('id', $course->id)->update($validatedData);
         
+        session()->flash('createData', 'Data berhasil diperbarui!');
         return redirect('/admin/sc');
     }
 
@@ -103,7 +105,7 @@ class AdminScController extends Controller
         }
 
         SupportCourse::destroy($id);
-        session()->flash('delete', 'Review berhasil dihapus!');
+        session()->flash('delData', 'Data berhasil dihapus!');
         return back();
     }
 

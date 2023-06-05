@@ -22,7 +22,8 @@
     <div class="col-lg-6">
       <div class="signup-wrapper">
         <div class="form-wrapper">
-          <h4 class="signuptext">Sign Up</h4>
+        <h4 class="signuptext text-center text-lg-start">Sign Up</h4>
+
           <p class="text-sm mb-25">
             Create your account
           </p>
@@ -112,6 +113,7 @@
 
 <!-- ========= All Javascript files linkup ======== -->
 <script src={{ asset("js/assets/bootstrap.bundle.min.js") }}></script>
-<script src={{ asset("js/assets/main.js") }}></script>
+<script src="{{ asset('js/assets/main.js') }}"></script>
 
+@include('partials.notif')
 @endsection

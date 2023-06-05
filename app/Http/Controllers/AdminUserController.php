@@ -30,7 +30,7 @@ class AdminUserController extends Controller
             }
 
             User::destroy($id);
-            session()->flash('delete', 'Review berhasil dihapus!');
+            session()->flash('delData', 'Review berhasil dihapus!');
         }
 
         return back();

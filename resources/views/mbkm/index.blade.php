@@ -39,9 +39,9 @@
                 @csrf
                 <div class="row gx-3 gy-2 align-items-center">
                     <div class="col-md-3">
-                    <label class="form-label" for="selectTypeOpt">Fakultas</label>
+                    <label class="form-label" for="selectTypeOpt">Periode Mulai</label>
                     <select id="selectTypeOpt" class="form-select color-dropdown" name="filter">
-                        <option value="all" selected>Pilih fakultas</option>
+                        <option value="all" selected>Pilih bulan</option>
                         @foreach ($months as $month)
                         <option value="{{ $loop->index + 1  }}" id="{{ $month }}">{{ $month }}</option>                      
                         @endforeach
@@ -81,9 +81,11 @@
                     <div class="col">
                       <div class="card" style="max-width: 540px;">
                         <div class="row g-0">
-                          <div class="col-md-4">
-                            <img src="{{ asset('img/assets/elements/1.png') }}" class="card-img-top" alt="Course">
-                          </div>
+                            @if($mbkm->picture)
+                            <img src="{{ asset('storage/'. $mbkm->picture) }}" class="card-img-top" alt="Tampilan MBKM" style="width:40%; margin:auto;">
+                            @else
+                                <img src="{{ URL::to('/') }}/img/image1.jpg" class="card-img-top" alt="Tampilan MBKM" style="width:40%; margin:auto;">
+                            @endif
                           <div class="col-md-8">
                             <div class="card-body">
                               <h5 class="card-title" style="font-size: 15px;">{{ $mbkm->mbkm_name }}</h5>
@@ -102,6 +104,7 @@
                     </div>
                     @endforeach
                 </div>
+               
 
               
             </div>

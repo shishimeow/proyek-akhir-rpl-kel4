@@ -115,10 +115,10 @@
                     <!-- Content wrapper -->
                                    
                     <div class="card" style="overflow-y: scroll; height:400px">
-                      @foreach ($reviews->sortByDesc('created_at') as $review)
-                      <div class="card card-body col-12">
-                        
-                        <div>
+                      
+                      {{-- <div class="card card-body col-12"> --}}
+                        @foreach ($reviews->sortByDesc('created_at') as $review)
+                        <div class="card card-body">
                           <div class="row">
                             <div class="col">
                               <div class="justify-content-start">
@@ -202,11 +202,15 @@
                           }
                 
                         </script>
+                        
+                         
                       </div>
-                    </div>
-                    <br>
+                      <br>
                       @endforeach
                     </div>
+                    
+                    </div>
+                    
                    
                     
                     
@@ -236,5 +240,7 @@
     
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    @include('partials.notif')
 
 @endsection

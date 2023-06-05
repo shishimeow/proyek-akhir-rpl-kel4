@@ -74,7 +74,10 @@
                     w-100
                     text-center
                   "
+                  type="submit"
                 >
+                
+                
                   Masuk
                 </button>
               </div>
@@ -104,21 +107,6 @@
 
 <script src="{{ asset('js/assets/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/assets/main.js') }}"></script>
-
-
-<style>
-  .swal2-popup {
-        width: 400px; 
-        height: 50px; 
-        font-size: 8px;
-        font-family: Arial, sans-serif;
-        color: #0E7658;
-        text-align: center;
-        border: 1px solid #1CAF66;
-        background-color: #D1E7DD;
-        
-      }
-</style>
 
 @include('partials.notif')
 

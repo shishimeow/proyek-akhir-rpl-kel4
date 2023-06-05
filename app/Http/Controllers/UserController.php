@@ -32,7 +32,7 @@ class UserController extends Controller
             ]);
         }
 
-        session()->flash('success', 'Profile berhasil diperbarui!');
+        session()->flash('updateAcc', 'Profile berhasil diperbarui!');
 
         return redirect('profile');
     }

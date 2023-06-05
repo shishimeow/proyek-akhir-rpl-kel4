@@ -49,7 +49,7 @@ class ScController extends Controller
         
                 ReviewSc::create($validate);
 
-                session()->flash('success', 'Review berhasil ditambahkan!');
+                session()->flash('successRev', 'Review berhasil ditambahkan!');
                 return redirect('/sc/'.$course->slug);
                 break;
         }
@@ -63,6 +63,7 @@ class ScController extends Controller
         $review->rating = $request->input('rating');
         $review->save();
     
+        session()->flash('successRev', 'Review berhasil diperbarui!');
         return back();
     }
 
@@ -70,7 +71,7 @@ class ScController extends Controller
         $id = $request->input('rev_id');
     
         ReviewSc::destroy($id);
-        session()->flash('delete', 'Review berhasil dihapus!');
+        session()->flash('deleteRev', 'Review berhasil dihapus!');
         return back();
     }
 

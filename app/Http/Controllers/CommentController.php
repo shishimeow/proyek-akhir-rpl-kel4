@@ -81,7 +81,6 @@ class CommentController extends Controller
                     'comment' => $request->input('comment')
                 ]);
         
-                session()->flash('updateCom', 'Komen berhasil diperbarui!');
                 return back();
                 break;
         }
@@ -91,7 +90,6 @@ class CommentController extends Controller
         $id = $request->input('comment_id');
 
         Comment::destroy($id);
-        session()->flash('deleteCom', 'Komen berhasil dihapus!');
         return back();
     }
 }

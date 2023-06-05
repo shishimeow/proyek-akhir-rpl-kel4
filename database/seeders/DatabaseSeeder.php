@@ -227,10 +227,10 @@ class DatabaseSeeder extends Seeder
             'mbkm_name' => 'Shopee',
             'periode_begin' => '2023-05-18 00:00:00',
             'periode_end' => '2023-10-05 00:00:00',
-            'positions' => 'Software Engineer, Copywriter, Internet Marketing, HRD Manager, UX Researcher',
+            'positions' => 'Software Engineer;Copywriter;Internet Marketing;HRD Manager;UX Researcher',
             'excerpt' => 'Software Engineer, Copywriter, Internet Marketing, etc',
-            'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman',
-            'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 3,00',
+            'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks; Memperoleh skill dunia nyata untuk mengasah potensi; Belajar langsung dari mentor yang berpengalaman',
+            'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun; Memiliki nilai minimal GPA 3,00',
             'rating' => 0.0,
             'slug' => 'shopee'
         ]);
@@ -239,10 +239,10 @@ class DatabaseSeeder extends Seeder
             'mbkm_name' => 'Tokopedia',
             'periode_begin' => '2023-07-15 00:00:00',
             'periode_end' => '2023-08-10 00:00:00',
-            'positions' => 'Software Engineer, Copywriter, Creative Graphic Designer, E-Commerce Business Development, Internet Marketing - SEO, Social Media',
+            'positions' => 'Software Engineer;Copywriter;Creative Graphic Designer;E-Commerce Business Development;Internet Marketing - SEO;Social Media',
             'excerpt' => 'Software Engineer, Copywriter, Creative Graphic Designer, etc',
-            'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman. Membangun dan memperluas koneksi. Mengeksplorasi dunia nyata teknik, biknis, dan marketing',
-            'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 3,00',
+            'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks; Memperoleh skill dunia nyata untuk mengasah potensi; Belajar langsung dari mentor yang berpengalaman; Membangun dan memperluas koneksi; Mengeksplorasi dunia nyata teknik, biknis, dan marketing',
+            'requirements' => 'Mahasiswa semester 5-8 dari jurusan dan universitas manapun; Memiliki nilai minimal GPA 3,00',
             'rating' => 0.0,
             'slug' => 'tokopedia'
         ]);
@@ -251,10 +251,10 @@ class DatabaseSeeder extends Seeder
             'mbkm_name' => 'Blibli',
             'periode_begin' => '2023-07-15 00:00:00',
             'periode_end' => '2023-09-23 00:00:00',
-            'positions' => 'Software Engineer, Social Media, Internet Marketing, UX Researcher, Copywriter',
+            'positions' => 'Software Engineer;Social Media;Internet Marketing;UX Researcher;Copywriter',
             'excerpt' => 'Software Engineer, Social Media, Internet Marketing, etc',
-            'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks. Memperoleh skill dunia nyata untuk mengasah potensi. Belajar langsung dari mentor yang berpengalaman. Membangun dan memperluas koneksi',
-            'requirements' => 'Mahasiswa semester 6-8 dari jurusan dan universitas manapun. Memiliki nilai minimal GPA 2,75',
+            'benefit' => 'Program Intership bersertifikat selama 6 bulan yang setara dengan 20 sks; Memperoleh skill dunia nyata untuk mengasah potensi; Belajar langsung dari mentor yang berpengalaman; Membangun dan memperluas koneksi',
+            'requirements' => 'Mahasiswa semester 6-8 dari jurusan dan universitas manapun; Memiliki nilai minimal GPA 2,75',
             'rating' => 0.0,
             'slug' => 'blibli'
         ]);
@@ -263,12 +263,24 @@ class DatabaseSeeder extends Seeder
             'mbkm_name' => 'Bangkit Academy 2023',
             'periode_begin' => '2023-05-01 00:00:00',
             'periode_end' => '2023-06-07 00:00:00',
-            'positions' => 'Machine learning, Mobile Development, Cloud Computing',
+            'positions' => 'Machine learning; Mobile Development; Cloud Computing',
             'excerpt' => 'Machine learning, Mobile Development, Cloud Computing',
-            'benefit' => 'Sertifikasi Global (Tensorflow Developer; Google Associate Android Developer; atau Google Associate Cloud Engineer), Kurikulum & Instruktur Industri (Machine Learning; Mobile Development (Android); atau Cloud Computing), Keterampilan untuk Siap Karier (Teknologi, soft skills, dan bahasa Inggris), Konversi 20 SKS (Terafiliasi dengan Kampus Merdeka - SIB), Lowongan Kerja untuk Lulusan, Dana Inkubasi untuk Bangun Startup (Dana senilai Rp 140 juta dan mentor industri untuk tim Capstone terbaik)',
-            'requirements' => 'Warga Negara Indonesia (WNI), Memenuhi ketentuan umum program Studi Independen Kampus Merdeka pada saat pelaksanaan program, Mahasiswa aktif dan berasal dari jenjang: a) D4/S1 semester 6/8/10/12/14 pada saat program dilaksanakan (Februari-Juli 2023); atau b) D3 semester 3 atau keatas pada saat program dilaksanakan (Februari-Juli 2023), Tidak mengambil program Kampus Merdeka lainnya pada saat pelaksanaan program, Tidak mengambil internship/magang/pekerjaan apapun (part-time ataupun full-time) pada saat pelaksanaan program, Tidak memiliki komitmen paruh/penuh waktu terkait organisasi/volunteership/leadership/aktivitas program lainnya pada saat pelaksanaan program, Telah mendapatkan persetujuan dosen pembimbing untuk mengkonversi SKS melalui program ini, Mengambil 6 SKS atau kurang pada universitas asal (kuliah reguler) pada saat pelaksanaan program, Belum akan lulus dari universitas pada tanggal 31 Juli 2023',
+            'benefit' => 'Sertifikasi Global (Tensorflow Developer, Google Associate Android Developer, atau Google Associate Cloud Engineer);Kurikulum & Instruktur Industri (Machine Learning, Mobile Development (Android), atau Cloud Computing);Keterampilan untuk Siap Karier (Teknologi, soft skills, dan bahasa Inggris);Konversi 20 SKS (Terafiliasi dengan Kampus Merdeka - SIB);Lowongan Kerja untuk Lulusan;Dana Inkubasi untuk Bangun Startup (Dana senilai Rp 140 juta dan mentor industri untuk tim Capstone terbaik)',
+            'requirements' => 'Warga Negara Indonesia (WNI);Memenuhi ketentuan umum program Studi Independen Kampus Merdeka pada saat pelaksanaan program;Mahasiswa aktif dan berasal dari jenjang: a) D4/S1 semester 6/8/10/12/14 pada saat program dilaksanakan (Februari-Juli 2023) atau b) D3 semester 3 atau keatas pada saat program dilaksanakan (Februari-Juli 2023);Tidak mengambil program Kampus Merdeka lainnya pada saat pelaksanaan program;Tidak mengambil internship/magang/pekerjaan apapun (part-time ataupun full-time) pada saat pelaksanaan program;Tidak memiliki komitmen paruh/penuh waktu terkait organisasi/volunteership/leadership/aktivitas program lainnya pada saat pelaksanaan program;Telah mendapatkan persetujuan dosen pembimbing untuk mengkonversi SKS melalui program ini;Mengambil 6 SKS atau kurang pada universitas asal (kuliah reguler) pada saat pelaksanaan program;Belum akan lulus dari universitas pada tanggal 31 Juli 2023',
             'rating' => 0.0,
             'slug' => 'bangkit-academy-2023'
+        ]);
+
+        mbkm::create([
+            'mbkm_name' => 'Apple Academy',
+            'periode_begin' => '2023-02-01 00:00:00',
+            'periode_end' => '2023-05-31 00:00:00',
+            'positions' => 'Software Engineer',
+            'excerpt' => 'Software Engineer',
+            'benefit' => '1. Berkonsep scholarship-internship, membuat Anda tidak perlu lagi untuk mengeluarkan uang saat melakukan pendaftaran untuk mengikuti program ini. Justru, Anda akan mendapatkan allowance (uang saku) dari Apple selama mengikuti program ini.; 2. Para peserta juga akan mendapatkan fasilitas penunjang untuk mengembangkan aplikasi berbasis iOS, seperti iPhone dan MacBook. Selain itu, dengan mengikuti academy ini, Anda juga bisa mendapatkan fasilitas lain, seperti Apple Watch serta perangkat Apple lainnya jika memang dibutuhkan untuk mengembangkan aplikasi yang ingin dibuat.; 3. Setelah berhasil membuat aplikasi, maka secara otomatis Anda akan langsung mendapatkan hak cipta aplikasi (Intellectual Property/ IP) secara utuh tanpa memberikan royalti kepada Apple. Hal ini tentu akan membuat Anda dapat mencantumkan nama Anda pada aplikasi tersebut di portfolio Anda.; 4. Pada akhir program academy, terdapat sebuah ajang bernama Talent Spark, yaitu suatu ajang dimana Apple Developer Academy akan mempertemukan para peserta academy dengan beberapa perusahaan yang bekerja sama dengan Apple sehingga tidak menutup kemungkinan akan terjadi sebuah proses rekrutmen.; 5. Anda juga akan memperoleh kesempatan untuk mengikuti acara tahunan dari Apple yang bernama WWDC (Worldwide Developer Conference). Di sini, Anda akan mendapatkan banyak training lanjutan, termasuk mendapatkan training langsung di kantor pusat Apple.;  6. Dengan menjadi peserta Apple Developer Academy, Anda akan dibentuk menjadi seorang profesional developer yang mempunyai banyak kemampuan, seperti teknologi, bisnis, desain, dan berkomunikasi diantara sesama tim.; 7. Menjadi peserta Apple Developer Academy, tentu akan membuat Anda mempunyai koneksi atau jaringan yang cukup banyak bahkan hingga ke dunia internasional. Hal ini tentu akan membuat Anda mempunyai banyak relasi saat melamar sebuah pekerjaan atau berbisnis.',
+            'requirements' => '1. Berumur 18 tahun ke atas; 2. Mempunyai kreatifitas tinggi; 3. Mampu berkolaborasi dan bekerja sama di dalam tim; 4. Mempunyai keinginan yang kuat untuk terus belajar dan berbagi ilmu; 5. Mempunyai passion di bidang developer; Selain persyaratan di atas, Anda juga perlu menyiapkan beberapa dokumen kelengkapan lainnya, antara lain yaitu:; 1. Melampirkan CV; 2. Melampirkan Motivation Letter yang menjelaskan alasan mengapa Anda berminat untuk bergabung dengan Apple Developer Academy; 3. Melampirkan Foto; 4. Melampirkan Project Portfolio yang sedang kamu tangani, seperti project dari kampus hingga sertifikat volunteer serta kegiatan sosial lainnya. Jika Anda tidak mempunyai portfolio, tidak perlu khawatir karena Anda dapat mengirimkan video yang berisi pencapaian yang telah Anda dapatkan selama ini.;',
+            'rating' => 0.0,
+            'slug' => 'apple-academy'
         ]);
 
         // ====================================================

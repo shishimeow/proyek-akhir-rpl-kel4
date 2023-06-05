@@ -58,6 +58,7 @@ class AdminMbkmController extends Controller
 
         mbkm::create($validatedData);
         
+        session()->flash('createData', 'Data berhasil ditambahkan!');
         return redirect('/admin/mbkm');
     }
 
@@ -116,6 +117,7 @@ class AdminMbkmController extends Controller
 
         mbkm::where('id', $course->id)->update($validatedData);
         
+        session()->flash('createData', 'Data berhasil diperbarui!');
         return redirect('/admin/mbkm');
     }
 
@@ -132,7 +134,7 @@ class AdminMbkmController extends Controller
         }
 
         mbkm::destroy($id);
-        session()->flash('delete', 'Review berhasil dihapus!');
+        session()->flash('delData', 'Data berhasil dihapus!');
         return back();
     }
 

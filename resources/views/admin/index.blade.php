@@ -89,7 +89,7 @@
                                   <td>{{ $reviewsc->rev_sc }}</td>
                               <td>
                                       
-                              <form id="delete-form" action="{{ route('sdelete.add')  }}" method="POST">
+                              <form id="delete-form" action="{{ route('scdelete.add')  }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 
