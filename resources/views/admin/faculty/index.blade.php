@@ -52,7 +52,7 @@
                                 @csrf
                                 @method('delete')
                                 
-                                <button class="dropdown-item" type="submit">
+                                <button class="dropdown-item" type="button" onclick="confirmDelete()">
                                   <i class="bx bx-trash me-1"></i>Delete
                                 </button>
                               </form>
@@ -90,22 +90,9 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    @include('partials.notif')
     
-    
-<<<<<<< HEAD
-@endsection
-=======
-
-<<<<<<< HEAD
-@endsection
- 
-=======
-
-
-
-
 
 
 @endsection
->>>>>>> 8943f25ddda542e99b8496ef6fa05f6a07a0e029
->>>>>>> 8cb7e72f0617e006a3788572394a475e3cbf469c
+

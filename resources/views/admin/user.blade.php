@@ -63,7 +63,7 @@
                               <form id="delete-form" action="{{ route('user.destroy', $list->id)  }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button class="dropdown-item" type="submit">
+                                <button class="dropdown-item" type="button" onclick="confirmDelete()">
                                   <i class="bx bx-trash me-1"></i>Delete
                                 </button>
                               </form>

@@ -1,31 +1,41 @@
-<style>
-    .swal2-popup {
-          width: 400px; 
-          height: 50px; 
-          font-size: 8px;
-          font-family: Arial, sans-serif;
-          color: #0E7658;
-          text-align: center;
-          border: 1px solid #1CAF66;
-          background-color: #D1E7DD;
-          
-        }
-
-        
-</style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+        function confirmDelete(){
+            Swal.fire({
+            title: 'Apakah Anda yakin ingin menghapus data ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form').submit();
+            }
+            });
+        }
+</script>
 
 {{-- Notif kalau login error, muncul di login page --}}
 @if(session()->has('loginError'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-                
-                title: "{{ session('loginError') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'error',
+                title: "{{ session('loginError') }}"
                 });
         });
     </script>
@@ -35,12 +45,20 @@
 @if(session()->has('signSuccess'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('signSuccess') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'success',
+                title: "{{ session('signSuccess') }}"
                 });
         });
     </script>
@@ -50,12 +68,20 @@
 @if(session()->has('signError'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('signError') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'error',
+                title: "{{ session('signError') }}"
                 });
         });
     </script>
@@ -65,43 +91,24 @@
 @if(session()->has('successRev'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('successRev') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
-        });
-    </script>
-@endif
-
-{{-- Notif kalau review mbkm/sc mau dihapus, muncul di masing-masing page --}}
-@if(session()->has('deleteRev'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('deleteRev') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
+            Swal.fire(
+            'Tersimpan!',
+            "{{ session('successRev') }}",
+            'success'
+            )
         });
     </script>
 @endif
 
 {{-- Notif kalau berhasil update profile --}}
-@if(session()->has('updateApp'))
+@if(session()->has('updateAcc'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('updateApp') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
+            Swal.fire(
+            'Tersimpan!',
+            "{{ session('updateAcc') }}",
+            'success'
+            )
         });
     </script>
 @endif
@@ -110,13 +117,11 @@
 @if(session()->has('createData'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('createData') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
+            Swal.fire(
+            'Tersimpan!',
+            "{{ session('createData') }}",
+            'success'
+            )
         });
     </script>
 @endif
@@ -125,13 +130,13 @@
 @if(session()->has('delData'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('delData') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
+                Swal.fire(
+                'Terhapus!',
+                "{{ session('delData') }}",
+                'success'
+                )
         });
     </script>
 @endif
+
+
