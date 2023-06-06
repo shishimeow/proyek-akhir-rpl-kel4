@@ -1,18 +1,4 @@
-<style>
-    .swal2-popup {
-          width: 400px; 
-          height: 50px; 
-          font-size: 8px;
-          font-family: Arial, sans-serif;
-          color: #0E7658;
-          text-align: center;
-          border: 1px solid #1CAF66;
-          background-color: #D1E7DD;
-          
-        }
 
-        
-</style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -20,12 +6,21 @@
 @if(session()->has('loginError'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-                
-                title: "{{ session('loginError') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'error',
+                title: 'Login gagal'
                 });
         });
     </script>
@@ -35,12 +30,21 @@
 @if(session()->has('signSuccess'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('signSuccess') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'succes',
+                title: 'Sign up berhasil'
                 });
         });
     </script>
@@ -50,12 +54,21 @@
 @if(session()->has('signError'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('signError') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'error',
+                title: 'Signup gagal'
                 });
         });
     </script>
@@ -65,12 +78,21 @@
 @if(session()->has('successRev'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('successRev') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'succes',
+                title: 'Berhasil diperbarui'
                 });
         });
     </script>
@@ -81,12 +103,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
-                position: 'top',
+            title: 'Are you sure?',
             
-                title: "{{ session('deleteRev') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            });
         });
     </script>
 @endif
@@ -95,12 +127,21 @@
 @if(session()->has('updateApp'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('updateApp') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'succes',
+                title: 'Profile berhasil dipudate'
                 });
         });
     </script>
@@ -110,14 +151,22 @@
 @if(session()->has('createData'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                position: 'top',
-            
-                title: "{{ session('createData') }}",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'succes',
+                title: 'Data berhasil ditambah/perbarui'
                 });
-        });
     </script>
 @endif
 
@@ -126,12 +175,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
-                position: 'top',
+            title: 'Are you sure?',
             
-                title: "{{ session('delData') }}",
-                showConfirmButton: false,
-                timer: 1500
-                });
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            });
         });
     </script>
 @endif
